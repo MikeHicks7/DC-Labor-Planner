@@ -1,0 +1,1341 @@
+<!DOCTYPE html>
+<!-- saved from url=(0080)file:///C:/Users/mike.hicks/Downloads/master-electronics-dc-labor-planner_6.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Master Electronics DC Labor Planner</title>
+<link rel="preconnect" href="https://fonts.googleapis.com/">
+<link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="">
+<link href="./Master Electronics DC Labor Planner_files/css2" rel="stylesheet">
+<link rel="stylesheet" href="./Master Electronics DC Labor Planner_files/tabler-icons.min.css">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --ink:#1a1a1a;--ink2:#4a4a4a;--ink3:#888;
+  --surface:#fff;--surface2:#f5f5f3;--surface3:#eeede9;
+  --border:#e0ddd8;--border2:#c8c5be;
+  --green:#1a6b3c;--green-bg:#e8f5ee;--green-border:#b8dfc8;
+  --amber:#7a4d00;--amber-bg:#fff4e0;--amber-border:#f0c96a;
+  --red:#8b1a1a;--red-bg:#fdf0f0;--red-border:#f0b8b8;
+  --blue:#0f4c81;--purple:#3d2b8a;--purple-bg:#f0eeff;
+  --flex:#5a2d82;--flex-bg:#f5eeff;--flex-border:#d4b8f0;
+  --brand:#b30000;
+  --ot:#7a3500;--ot-bg:#fff5ec;--ot-border:#f0c49a;
+  --act:#0a4f6e;--act-bg:#e8f4fa;--act-border:#8ecde8;
+}
+body{font-family:'Inter',sans-serif;font-size:13px;color:var(--ink);background:#f8f7f5;line-height:1.5;min-height:100vh}
+.app{max-width:980px;margin:0 auto;padding:0 0 3rem}
+
+/* Header */
+.app-header{display:flex;align-items:center;justify-content:space-between;padding:.85rem 1.25rem;background:var(--ink);margin-bottom:1.25rem;position:sticky;top:0;z-index:100}
+.brand-block{display:flex;flex-direction:column;gap:2px}
+.brand-name{font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,0.55)}
+.tool-name{font-family:'IBM Plex Mono',monospace;font-size:15px;font-weight:500;letter-spacing:.03em;color:#fff}
+.tool-name span{color:#ff9999}
+.header-actions{display:flex;gap:8px;align-items:center}
+.btn{padding:.35rem .9rem;border:1px solid rgba(255,255,255,0.25);border-radius:4px;cursor:pointer;font-size:12px;font-family:'Inter',sans-serif;background:transparent;color:#fff;font-weight:500;transition:all .15s}
+.btn:hover{background:rgba(255,255,255,0.12)}
+.btn-light{background:rgba(255,255,255,0.1);border-color:rgba(255,255,255,0.2)}
+.btn-light:hover{background:rgba(255,255,255,0.2)}
+.btn-print{background:#fff;color:var(--ink);border-color:#fff}
+.btn-print:hover{background:#f0f0f0}
+
+/* Body */
+.body-wrap{padding:0 1.25rem}
+label{display:block;font-size:10px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--ink3);margin-bottom:2px}
+input[type=date],input[type=number],input[type=text],input[type=password],input[type=time]{
+  padding:.32rem .6rem;border:1px solid var(--border);border-radius:4px;font-size:13px;
+  font-family:'Inter',sans-serif;color:var(--ink);background:var(--surface);outline:none;transition:border-color .15s}
+input:focus{border-color:var(--ink)}
+input[type=number]{width:80px;text-align:right}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:.9rem 1.1rem;margin-bottom:.75rem}
+.section-title{font-size:10px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;color:var(--ink3);margin-bottom:.5rem}
+.divider{border:none;border-top:1px solid var(--border);margin:1rem 0}
+.field-group{display:flex;flex-direction:column;gap:2px}
+
+/* Daily input */
+.date-bar{display:flex;align-items:flex-end;gap:14px;margin-bottom:1rem;flex-wrap:wrap;background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:.9rem 1.1rem}
+.dept-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(255px,1fr));gap:10px;margin-bottom:1rem}
+.dept-card{border:1px solid var(--border);border-radius:8px;overflow:hidden;background:var(--surface)}
+.sub-card{border-color:var(--border)}
+.dch{padding:.45rem .8rem;background:var(--surface2);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
+.dch-name{font-weight:600;font-size:12px}
+.dch-vol{font-size:10px;color:var(--ink3);font-family:'IBM Plex Mono',monospace}
+.dcb{padding:.6rem .8rem;display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px}
+.si{display:flex;flex-direction:column;gap:2px}
+.stag{font-size:9px;font-weight:600;letter-spacing:.05em;text-transform:uppercase}
+.stag.am{color:var(--blue)}.stag.pm{color:var(--ink2)}.stag.fx{color:var(--flex)}.stag.ot{color:var(--ot)}
+.sub-card .dch{background:var(--surface3)}
+.ot-row{padding:.35rem .8rem .55rem;border-top:1px dashed var(--ot-border);background:var(--ot-bg);display:grid;grid-template-columns:1fr 1fr auto;gap:6px;align-items:end}
+.ot-row .si input{border-color:var(--ot-border)}
+.ot-row .si input:focus{border-color:var(--ot)}
+
+/* Flex panel */
+.flex-panel{border:1.5px solid var(--flex-border);border-radius:8px;background:var(--flex-bg);padding:.9rem 1.1rem;margin-bottom:1rem}
+.flex-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:.5rem;flex-wrap:wrap;gap:6px}
+.flex-title{font-weight:600;font-size:13px;color:var(--flex);display:flex;align-items:center;gap:6px}
+.flex-pool-bar{display:flex;align-items:center;gap:16px;margin-bottom:.6rem;flex-wrap:wrap}
+.pool-counter{font-family:'IBM Plex Mono',monospace;font-size:22px;font-weight:500}
+.flex-dept-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(165px,1fr));gap:7px}
+.fdc{background:var(--surface);border:1px solid var(--flex-border);border-radius:5px;padding:.5rem .7rem;transition:border-color .2s}
+.fdc.fdc-ok{border-color:var(--green-border);background:var(--green-bg)}
+.fdc.fdc-fail{border-color:var(--red-border);background:var(--red-bg)}
+
+/* Generate button */
+.generate-btn{width:100%;padding:.7rem;background:var(--ink);color:#fff;border:none;border-radius:6px;font-size:14px;font-family:'Inter',sans-serif;font-weight:600;cursor:pointer;letter-spacing:.02em;transition:background .15s;margin-bottom:1.25rem;display:flex;align-items:center;justify-content:center;gap:8px}
+.generate-btn:hover{background:#333}
+.generate-btn i{font-size:16px}
+
+/* Results */
+.summary-strip{display:grid;grid-template-columns:repeat(auto-fill,minmax(115px,1fr));gap:8px;margin-bottom:1rem}
+.metric-tile{border:1px solid var(--border);border-radius:6px;padding:.6rem .8rem;background:var(--surface)}
+.metric-tile .mt-val{font-family:'IBM Plex Mono',monospace;font-size:19px;font-weight:500;color:var(--ink);margin-top:2px}
+.metric-tile .mt-lbl{font-size:9px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--ink3)}
+.metric-tile.good{border-color:var(--green-border);background:var(--green-bg)}.metric-tile.good .mt-val{color:var(--green)}
+.metric-tile.warn{border-color:var(--amber-border);background:var(--amber-bg)}.metric-tile.warn .mt-val{color:var(--amber)}
+.metric-tile.bad{border-color:var(--red-border);background:var(--red-bg)}.metric-tile.bad .mt-val{color:var(--red)}
+.metric-tile.flex-t{border-color:var(--flex-border);background:var(--flex-bg)}.metric-tile.flex-t .mt-val{color:var(--flex)}
+
+/* Tabs */
+.tab-bar{display:flex;gap:0;border-bottom:2px solid var(--border2);margin-bottom:1rem}
+.tab-bar button{padding:.45rem 1.1rem;border:none;background:none;cursor:pointer;font-size:12px;font-family:'Inter',sans-serif;color:var(--ink3);font-weight:500;border-bottom:2px solid transparent;margin-bottom:-2px;transition:all .15s}
+.tab-bar button.active{color:var(--ink);border-bottom-color:var(--ink);font-weight:600}
+.tab-bar button:hover:not(.active){color:var(--ink2)}
+.rpane{display:none}.rpane.active{display:block}
+
+/* Tables */
+.tbl-wrap{overflow-x:auto;border:1px solid var(--border);border-radius:8px;background:var(--surface)}
+table.rt{border-collapse:collapse;width:100%;font-size:11px}
+table.rt th{padding:5px 5px;border-bottom:1.5px solid var(--border2);border-right:1px solid var(--border);text-align:center;font-size:9px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--ink3);background:var(--surface2);white-space:nowrap}
+table.rt th.lh{text-align:left;min-width:110px;padding-left:8px}
+table.rt th.hb{border-left:2px solid var(--border2)!important}
+table.rt th.tc{background:#fff8e8;color:var(--amber);border-left:2px solid var(--amber-border)!important}
+table.rt td{padding:3px 5px;border-bottom:1px solid var(--border);border-right:1px solid var(--border);text-align:center;font-size:11px;white-space:nowrap;font-family:'IBM Plex Mono',monospace}
+table.rt td.lc{text-align:left;font-family:'Inter',sans-serif;font-weight:600;font-size:11px;padding-left:8px}
+table.rt td.sc{text-align:left;font-family:'Inter',sans-serif;font-size:10px;color:var(--ink2);padding-left:16px}
+table.rt td.hb{border-left:2px solid var(--border2)!important}
+table.rt td.tc{border-left:2px solid var(--amber-border)!important;background:#fffcf0}
+table.rt tr:last-child td{border-bottom:none}
+table.rt tr.sub-r{background:#f9f9f7}
+table.rt tr.pm-r td{background:#fafaf9}
+table.rt tr.fx-r td{background:var(--flex-bg)}
+table.rt tr.ot-r td{background:var(--ot-bg)}
+
+/* Actuals grid */
+.act-hint{font-size:11px;color:var(--ink3);margin-bottom:.6rem;line-height:1.5}
+.act-dept-block{margin-bottom:.75rem;border:1px solid var(--border);border-radius:7px;overflow:hidden}
+.act-dept-hdr{display:flex;align-items:center;justify-content:space-between;padding:.4rem .8rem;background:var(--surface2);border-bottom:1px solid var(--border)}
+.act-dept-name{font-weight:600;font-size:12px}
+.act-dept-meta{font-size:10px;color:var(--ink3);font-family:'IBM Plex Mono',monospace}
+.act-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(68px,1fr));gap:4px;padding:.5rem .7rem;background:var(--surface)}
+.act-cell{display:flex;flex-direction:column;gap:2px}
+.act-cell-lbl{font-size:8px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:var(--ink3);text-align:center}
+.act-cell input{width:100%;text-align:center;padding:.25rem .3rem;font-size:11px;font-family:'IBM Plex Mono',monospace;border:1px solid var(--border);border-radius:3px;background:var(--surface)}
+.act-cell input.has-val{border-color:var(--act-border);background:var(--act-bg);color:var(--act)}
+.act-cell input:disabled{background:var(--surface2);color:#ccc;border-color:var(--border);cursor:not-allowed}
+.act-cell .act-plan{font-size:8px;color:var(--ink3);text-align:center;font-family:'IBM Plex Mono',monospace;margin-top:1px}
+.act-cell .act-var{font-size:8px;font-weight:600;text-align:center;font-family:'IBM Plex Mono',monospace}
+.act-cell .act-var.av-good{color:var(--green)}.act-cell .act-var.av-warn{color:var(--amber)}.act-cell .act-var.av-bad{color:var(--red)}.act-cell .act-var.av-none{color:#ccc}
+
+/* Actuals summary */
+.act-summary-row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:.75rem}
+.act-stat{border:1px solid var(--border);border-radius:5px;padding:.4rem .7rem;background:var(--surface);min-width:90px}
+.act-stat .as-val{font-family:'IBM Plex Mono',monospace;font-size:16px;font-weight:500}
+.act-stat .as-lbl{font-size:9px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--ink3)}
+.act-stat.as-act{border-color:var(--act-border);background:var(--act-bg)}.act-stat.as-act .as-val{color:var(--act)}
+.act-stat.as-good{border-color:var(--green-border);background:var(--green-bg)}.act-stat.as-good .as-val{color:var(--green)}
+.act-stat.as-warn{border-color:var(--amber-border);background:var(--amber-bg)}.act-stat.as-warn .as-val{color:var(--amber)}
+.act-stat.as-bad{border-color:var(--red-border);background:var(--red-bg)}.act-stat.as-bad .as-val{color:var(--red)}
+
+/* Reforecast panel */
+.refc-panel{border:1.5px solid var(--act-border);border-radius:8px;background:var(--act-bg);padding:.8rem 1rem;margin-bottom:.75rem}
+.refc-title{font-weight:600;font-size:12px;color:var(--act);display:flex;align-items:center;gap:6px;margin-bottom:.5rem}
+.refc-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:6px}
+.refc-item{background:var(--surface);border:1px solid var(--act-border);border-radius:5px;padding:.4rem .6rem}
+.refc-dept{font-size:10px;font-weight:600;color:var(--ink2);margin-bottom:2px}
+.refc-vals{font-size:11px;font-family:'IBM Plex Mono',monospace}
+
+/* Accuracy table */
+.acc-tbl{width:100%;border-collapse:collapse;font-size:11px;margin-top:.5rem}
+.acc-tbl th{text-align:left;padding:4px 6px;border-bottom:1.5px solid var(--border2);font-size:9px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--ink3);background:var(--surface2)}
+.acc-tbl th.r{text-align:right}
+.acc-tbl td{padding:4px 6px;border-bottom:1px solid var(--border);font-family:'IBM Plex Mono',monospace;font-size:11px;text-align:right}
+.acc-tbl td.lc{text-align:left;font-family:'Inter',sans-serif;font-weight:600}
+.acc-tbl td.sc{text-align:left;font-family:'Inter',sans-serif;font-size:10px;color:var(--ink2);padding-left:14px}
+.acc-tbl tr:last-child td{border-bottom:none}
+.acc-bar{display:inline-block;height:7px;border-radius:3px;vertical-align:middle;margin-left:4px}
+
+table.rt tr.divr td{border-top:1.5px solid var(--border2)}
+table.rt td.off{color:#ccc;background:#fafaf9;font-size:9px}
+table.rt td.g-s{background:var(--red-bg);color:var(--red);font-weight:600}
+table.rt td.g-o{background:var(--green-bg);color:var(--green);font-weight:600}
+table.rt td.g-e{background:var(--surface2);color:var(--ink3)}
+table.rt td.g-fx{background:var(--flex-bg);color:var(--flex);font-weight:600}
+table.rt td.pull-c{background:var(--purple-bg);color:var(--purple);font-size:10px}
+table.rt td.dem-c{color:var(--ink3);font-size:10px}
+table.rt td.rem-z{background:var(--green-bg);color:var(--green);font-weight:600}
+table.rt td.rem-late{background:var(--red-bg);color:var(--red);font-weight:600;border:1.5px solid var(--red-border)}
+table.rt td.rem-warn{background:var(--amber-bg);color:var(--amber)}
+table.rt td.rem-ok{background:var(--green-bg);color:var(--green)}
+table.rt td.ol-c{color:var(--blue);font-weight:600}
+table.rt td.fx-c{color:var(--flex);font-weight:600}
+table.rt tr.total-r td{background:var(--surface3);font-weight:600;border-top:1.5px solid var(--border2)}
+
+/* Recommendations */
+.rec-row{display:flex;gap:10px;align-items:flex-start;padding:.55rem .8rem;border-radius:6px;margin-bottom:.4rem;font-size:12px;line-height:1.55}
+.rec-row.ok{background:var(--green-bg);border:1px solid var(--green-border)}
+.rec-row.warn{background:var(--amber-bg);border:1px solid var(--amber-border)}
+.rec-row.bad{background:var(--red-bg);border:1px solid var(--red-border)}
+.rec-row.flex-rec{background:var(--flex-bg);border:1px solid var(--flex-border)}
+.rec-icon{font-size:15px;margin-top:1px;flex-shrink:0}
+
+/* Admin panel */
+.admin-panel{background:var(--surface);border:2px solid var(--ink);border-radius:8px;padding:1rem 1.25rem;margin-bottom:1rem}
+.admin-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:.75rem}
+.admin-section-label{font-size:10px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;color:var(--ink3);margin:.7rem 0 5px}
+.admin-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:9px;margin-bottom:.6rem}
+.adt{width:100%;border-collapse:collapse;font-size:12px}
+.adt th{text-align:left;padding:4px 5px;border-bottom:1px solid var(--border);font-size:9px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:var(--ink3)}
+.adt td{padding:3px 4px;border-bottom:1px solid var(--border)}
+.adt tr:last-child td{border-bottom:none}
+.adt tr.sub-r{background:var(--surface2)}
+
+/* PIN overlay */
+.pin-overlay{border:1px solid var(--border);border-radius:8px;padding:1.25rem;text-align:center;background:var(--surface2);margin-bottom:1rem}
+.pin-overlay p{font-size:13px;color:var(--ink2);margin-bottom:.6rem}
+.pin-row{display:flex;gap:8px;justify-content:center;align-items:center}
+.pin-row input{width:130px;text-align:center;letter-spacing:.25em;font-family:'IBM Plex Mono',monospace;font-size:16px}
+
+/* Status badges */
+.status-badge{display:inline-flex;align-items:center;gap:5px;padding:.22rem .65rem;border-radius:4px;font-size:11px;font-weight:600}
+.status-badge.ok{background:var(--green-bg);color:var(--green);border:1px solid var(--green-border)}
+.status-badge.warn{background:var(--amber-bg);color:var(--amber);border:1px solid var(--amber-border)}
+.status-badge.bad{background:var(--red-bg);color:var(--red);border:1px solid var(--red-border)}
+.dot{width:7px;height:7px;border-radius:50%;display:inline-block;flex-shrink:0}
+.dot.ok{background:var(--green)}.dot.warn{background:var(--amber)}.dot.bad{background:var(--red)}
+
+/* Charts */
+.chart-wrap{position:relative;width:100%;background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:.75rem}
+
+/* Print */
+@media print{
+  body{background:#fff}
+  .app-header{position:relative;background:#fff;border-bottom:2px solid #000;padding:.5rem 1rem}
+  .brand-name{color:#888}
+  .tool-name{color:#000}
+  .tool-name span{color:var(--brand)}
+  .btn,.header-actions,.tab-bar,.admin-panel,.pin-overlay,.generate-btn,.flex-panel,.dept-grid,.date-bar,.no-print{display:none!important}
+  .print-only{display:block!important}
+  .body-wrap{padding:0 .5rem}
+  .rpane{display:block!important}
+  .tbl-wrap{border:none}
+  .chart-wrap{border:none;padding:0}
+  h2{font-size:13px;margin-bottom:.4rem}
+}
+.print-only{display:none}
+.print-header{padding-bottom:.5rem;margin-bottom:.75rem;border-bottom:1.5px solid var(--ink)}
+.print-brand{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--ink3);letter-spacing:.1em;text-transform:uppercase;margin-bottom:2px}
+.print-title{font-family:'IBM Plex Mono',monospace;font-size:16px;font-weight:500}
+.print-meta{font-size:11px;color:var(--ink2);margin-top:2px}
+
+/* Footer */
+.app-footer{text-align:center;font-size:10px;color:var(--ink3);padding:1.5rem 0 .5rem;letter-spacing:.05em}
+</style>
+<script src="./Master Electronics DC Labor Planner_files/chart.umd.min.js.download"></script></head>
+<body>
+<div class="app">
+
+<!-- Header -->
+<div class="app-header">
+  <div class="brand-block">
+    <div class="brand-name">Master Electronics</div>
+    <div class="tool-name">DC <span>LABOR PLANNER</span></div>
+  </div>
+  <div class="header-actions">
+    <button class="btn btn-light no-print" onclick="toggleAdmin()"><i class="ti ti-settings" style="font-size:13px"></i> Admin</button>
+    <button class="btn btn-print no-print" onclick="window.print()"><i class="ti ti-printer" style="font-size:13px;color:var(--ink)"></i> <span style="color:var(--ink)">Print</span></button>
+  </div>
+</div>
+
+<div class="body-wrap">
+
+<!-- PIN overlay -->
+<div id="pinOverlay" class="pin-overlay no-print" style="display:none">
+  <p><i class="ti ti-lock"></i> Enter admin PIN to access settings</p>
+  <div class="pin-row">
+    <input type="password" id="pinInput" placeholder="· · · ·" maxlength="6" onkeydown="if(event.key===&#39;Enter&#39;)checkPin()">
+    <button class="btn" style="background:var(--ink);color:#fff;border-color:var(--ink)" onclick="checkPin()">Unlock</button>
+    <button class="btn" style="color:var(--ink);border-color:var(--border2)" onclick="document.getElementById(&#39;pinOverlay&#39;).style.display=&#39;none&#39;">Cancel</button>
+  </div>
+  <div id="pinErr" style="font-size:11px;color:var(--red);margin-top:6px"></div>
+</div>
+
+<!-- Admin panel -->
+<div id="adminPanel" class="admin-panel no-print" style="display:none">
+  <div class="admin-header">
+    <div style="font-weight:600;font-size:14px;display:flex;align-items:center;gap:6px"><i class="ti ti-adjustments" style="font-size:15px"></i> Admin settings <span style="font-size:11px;font-weight:400;color:var(--ink3)">— PIN: 1234</span></div>
+    <button class="btn" style="color:var(--ink);border-color:var(--border2)" onclick="closeAdmin()"><i class="ti ti-x" style="font-size:12px"></i> Close</button>
+  </div>
+  <div class="admin-section-label">Core parameters</div>
+  <div class="admin-grid">
+    <div class="field-group"><label>Shift length (hrs)</label><input type="number" id="a_shift" value="8.5" step="0.5" style="width:80px" oninput="updateAdminNotes()"></div>
+    <div class="field-group"><label>Break adj. (hrs)</label><input type="number" id="a_break" value="0.75" step="0.25" style="width:80px" oninput="updateAdminNotes()"></div>
+    <div class="field-group"><label>Efficiency (%)</label><input type="number" id="a_eff" value="100" min="50" max="100" style="width:80px"></div>
+    <div class="field-group"><label>Attendance (%)</label><input type="number" id="a_att" value="95" min="50" max="100" style="width:80px"></div>
+    <div class="field-group"><label>Picking % of total</label><input type="number" id="a_pickPct" value="53" style="width:80px"></div>
+    <div class="field-group"><label>DryPack % of Pick</label><input type="number" id="a_dpPct" value="14" style="width:80px"></div>
+    <div class="field-group"><label>Reel Tbl % of Pick</label><input type="number" id="a_rpPct" value="7" style="width:80px"></div>
+    <div class="field-group"><label>AutoStore % total</label><input type="number" id="a_asPct" value="47" style="width:80px"></div>
+  </div>
+  <div class="admin-section-label">Flex team</div>
+  <div class="admin-grid" style="margin-bottom:.5rem">
+    <div class="field-group"><label>Flex pool size</label><input type="number" id="a_flexPool" value="12" min="0" max="50" style="width:80px"></div>
+    <div class="field-group"><label>Flex start</label><input type="time" id="a_flexStart" value="08:00" style="width:100px"></div>
+    <div class="field-group"><label>Flex end</label><input type="time" id="a_flexEnd" value="21:00" style="width:100px"></div>
+    <div class="field-group"><label>Flex efficiency (%)</label><input type="number" id="a_flexEff" value="80" min="50" max="100" style="width:80px"></div>
+    <div class="field-group"><label>Flex breaks (hrs)</label><input type="number" id="a_flexBreak" value="1.75" step="0.25" style="width:80px" oninput="updateAdminNotes()"></div>
+  </div>
+  <div style="font-size:11px;color:var(--ink3);margin-bottom:.75rem" id="adminNote">Dept shift net hrs: 7.75  ·  Flex net hrs: 11.25</div>
+  <div class="admin-section-label">Department rates, schedules &amp; clear targets</div>
+  <div style="overflow-x:auto"><table class="adt">
+    <thead><tr>
+      <th style="min-width:105px">Area</th><th>Dept %</th><th>Rate/hr</th>
+      <th>Start</th><th>End</th><th>Lag (hrs)</th>
+      <th style="color:var(--amber)">Clear offset (hrs)</th>
+    </tr></thead>
+    <tbody id="adminDeptTbl"></tbody>
+  </table></div>
+  <div style="font-size:10px;color:var(--ink3);margin-top:5px">Clear offset = hrs before dept end by which backlog must reach zero. 0 = full shift (Packaging, Shipping).</div>
+</div>
+
+<!-- Daily inputs -->
+<div class="date-bar">
+  <div class="field-group"><label>Work date</label><input type="date" id="d_date" style="width:155px"></div>
+  <div class="field-group"><label>Total ITN/Lines today</label><input type="number" id="d_vol" value="5300" style="width:115px" oninput="refreshCards()"></div>
+  <div style="margin-left:auto;display:flex;align-items:flex-end">
+    <div style="font-size:11px;color:var(--ink3);text-align:right;line-height:1.4" id="netHrsDisplay">Net hrs/shift: <strong>7.75</strong><br>Flex net hrs: <strong>11.25</strong></div>
+  </div>
+</div>
+
+<div class="section-title">Department headcount — enter today's staffing &nbsp;·&nbsp; AM &nbsp;·&nbsp; PM &nbsp;·&nbsp; Flex</div>
+<div class="dept-grid" id="deptCards"><div class="dept-card">
+      <div class="dch">
+        <div class="dch-name">Pulling</div>
+        <div class="dch-vol">2,809 ITN &nbsp;·&nbsp; clear by <span style="color:var(--amber);font-weight:600">7pm</span></div>
+      </div>
+      <div class="dcb">
+        <div class="si"><div class="stag am">AM 5am–1:30pm</div><input type="number" id="hc_am_pulling" value="0" min="0" max="99" style="width:62px" oninput="HC[&#39;pulling&#39;].am=parseInt(this.value)||0"></div>
+        <div class="si"><div class="stag pm">PM 12pm–8:30pm</div><input type="number" id="hc_pm_pulling" value="0" min="0" max="99" style="width:62px" oninput="HC[&#39;pulling&#39;].pm=parseInt(this.value)||0"></div>
+        <div class="si"><div class="stag fx">FLEX 8a–9p</div><input type="number" id="hc_fx_pulling" value="0" min="0" max="99" style="width:62px" oninput="HC[&#39;pulling&#39;].fx=parseInt(this.value)||0;updateFlexCounters()"></div>
+      </div>
+      <div class="ot-row">
+        <div class="si"><div class="stag ot">OT people</div><input type="number" id="ot_hc_pulling" value="0" min="0" max="99" style="width:62px" oninput="HC[&#39;pulling&#39;].otHc=parseInt(this.value)||0;updateOTCaps()"></div>
+        <div class="si"><div class="stag ot">OT hrs/person</div><input type="number" id="ot_hrs_pulling" value="0" min="0" max="8" step="0.5" style="width:62px" oninput="HC[&#39;pulling&#39;].otHrs=parseFloat(this.value)||0;updateOTCaps()"></div>
+        <div style="font-size:9px;color:var(--ot);text-align:right;padding-bottom:3px;line-height:1.3" id="ot_cap_pulling"></div>
+      </div>
+    </div><div class="dept-card">
+      <div class="dch">
+        <div class="dch-name">Picking</div>
+        <div class="dch-vol">2,809 ITN &nbsp;·&nbsp; clear by <span style="color:var(--amber);font-weight:600">7pm</span></div>
+      </div>
+      <div class="dcb">
+        <div class="si"><div class="stag am">AM 6am–2:30pm</div><input type="number" id="hc_am_picking" value="0" min="0" max="99" style="width:62px" oninput="HC[&#39;picking&#39;].am=parseInt(this.value)||0"></div>
+        <div class="si"><div class="stag pm">PM 12pm–8:30pm</div><input type="number" id="hc_pm_picking" value="0" min="0" max="99" style="width:62px" oninput="HC[&#39;picking&#39;].pm=parseInt(this.value)||0"></div>
+        <div class="si"><div class="stag fx">FLEX 8a–9p</div><input type="number" id="hc_fx_picking" value="0" min="0" max="99" style="width:62px" oninput="HC[&#39;picking&#39;].fx=parseInt(this.value)||0;updateFlexCounters()"></div>
+      </div>
+      <div class="ot-row">
+        <div class="si"><div class="stag ot">OT people</div><input type="number" id="ot_hc_picking" value="0" min="0" max="99" style="width:62px" oninput="HC[&#39;picking&#39;].otHc=parseInt(this.value)||0;updateOTCaps()"></div>
+        <div class="si"><div class="stag ot">OT hrs/person</div><input type="number" id="ot_hrs_picking" value="0" min="0" max="8" step="0.5" style="width:62px" oninput="HC[&#39;picking&#39;].otHrs=parseFloat(this.value)||0;updateOTCaps()"></div>
+        <div style="font-size:9px;color:var(--ot);text-align:right;padding-bottom:3px;line-height:1.3" id="ot_cap_picking"></div>
+      </div>
+    </div><div class="dept-card sub-card">
+      <div class="dch">
+        <div class="dch-name">↳ DryPack</div>
+        <div class="dch-vol">393 ITN &nbsp;·&nbsp; clear by <span style="color:var(--amber);font-weight:600">7pm</span></div>
+      </div>
+      <div class="dcb">
+        <div class="si"><div class="stag am">AM 6am–2:30pm</div><input type="number" id="hc_am_drypack" value="0" min="0" max="99" style="width:62px" oninput="HC[&#39;drypack&#39;].am=parseInt(this.value)||0"></div>
+        <div class="si"><div class="stag pm">PM 12pm–8:30pm</div><input type="number" id="hc_pm_drypack" value="0" min="0" max="99" style="width:62px" oninput="HC[&#39;drypack&#39;].pm=parseInt(this.value)||0"></div>
+        <div class="si"><div class="stag fx">FLEX 8a–9p</div><input type="number" id="hc_fx_drypack" value="0" min="0" max="99" style="width:62px" oninput="HC[&#39;drypack&#39;].fx=parseInt(this.value)||0;updateFlexCounters()"></div>
+      </div>
+      <div class="ot-row">
+        <div class="si"><div class="stag ot">OT people</div><input type="number" id="ot_hc_drypack" value="0" min="0" max="99" style="width:62px" oninput="HC[&#39;drypack&#39;].otHc=parseInt(this.value)||0;updateOTCaps()"></div>
+        <div class="si"><div class="stag ot">OT hrs/person</div><input type="number" id="ot_hrs_drypack" value="0" min="0" max="8" step="0.5" style="width:62px" oninput="HC[&#39;drypack&#39;].otHrs=parseFloat(this.value)||0;updateOTCaps()"></div>
+        <div style="font-size:9px;color:var(--ot);text-align:right;padding-bottom:3px;line-height:1.3" id="ot_cap_drypack"></div>
+      </div>
+    </div><div class="dept-card sub-card">
+      <div class="dch">
+        <div class="dch-name">↳ Reel Table</div>
+        <div class="dch-vol">197 ITN &nbsp;·&nbsp; clear by <span style="color:var(--amber);font-weight:600">7pm</span></div>
+      </div>
+      <div class="dcb">
+        <div class="si"><div class="stag am">AM 6am–2:30pm</div><input type="number" id="hc_am_reeltable" value="0" min="0" max="99" style="width:62px" oninput="HC[&#39;reeltable&#39;].am=parseInt(this.value)||0"></div>
+        <div class="si"><div class="stag pm">PM 12pm–8:30pm</div><input type="number" id="hc_pm_reeltable" value="0" min="0" max="99" style="width:62px" oninput="HC[&#39;reeltable&#39;].pm=parseInt(this.value)||0"></div>
+        <div class="si"><div class="stag fx">FLEX 8a–9p</div><input type="number" id="hc_fx_reeltable" value="0" min="0" max="99" style="width:62px" oninput="HC[&#39;reeltable&#39;].fx=parseInt(this.value)||0;updateFlexCounters()"></div>
+      </div>
+      <div class="ot-row">
+        <div class="si"><div class="stag ot">OT people</div><input type="number" id="ot_hc_reeltable" value="0" min="0" max="99" style="width:62px" oninput="HC[&#39;reeltable&#39;].otHc=parseInt(this.value)||0;updateOTCaps()"></div>
+        <div class="si"><div class="stag ot">OT hrs/person</div><input type="number" id="ot_hrs_reeltable" value="0" min="0" max="8" step="0.5" style="width:62px" oninput="HC[&#39;reeltable&#39;].otHrs=parseFloat(this.value)||0;updateOTCaps()"></div>
+        <div style="font-size:9px;color:var(--ot);text-align:right;padding-bottom:3px;line-height:1.3" id="ot_cap_reeltable"></div>
+      </div>
+    </div><div class="dept-card">
+      <div class="dch">
+        <div class="dch-name">AutoStore</div>
+        <div class="dch-vol">2,491 ITN &nbsp;·&nbsp; clear by <span style="color:var(--amber);font-weight:600">7pm</span></div>
+      </div>
+      <div class="dcb">
+        <div class="si"><div class="stag am">AM 4am–12:30pm</div><input type="number" id="hc_am_autostore" value="0" min="0" max="99" style="width:62px" oninput="HC[&#39;autostore&#39;].am=parseInt(this.value)||0"></div>
+        <div class="si"><div class="stag pm">PM 12pm–8:30pm</div><input type="number" id="hc_pm_autostore" value="0" min="0" max="99" style="width:62px" oninput="HC[&#39;autostore&#39;].pm=parseInt(this.value)||0"></div>
+        <div class="si"><div class="stag fx">FLEX 8a–9p</div><input type="number" id="hc_fx_autostore" value="0" min="0" max="99" style="width:62px" oninput="HC[&#39;autostore&#39;].fx=parseInt(this.value)||0;updateFlexCounters()"></div>
+      </div>
+      <div class="ot-row">
+        <div class="si"><div class="stag ot">OT people</div><input type="number" id="ot_hc_autostore" value="0" min="0" max="99" style="width:62px" oninput="HC[&#39;autostore&#39;].otHc=parseInt(this.value)||0;updateOTCaps()"></div>
+        <div class="si"><div class="stag ot">OT hrs/person</div><input type="number" id="ot_hrs_autostore" value="0" min="0" max="8" step="0.5" style="width:62px" oninput="HC[&#39;autostore&#39;].otHrs=parseFloat(this.value)||0;updateOTCaps()"></div>
+        <div style="font-size:9px;color:var(--ot);text-align:right;padding-bottom:3px;line-height:1.3" id="ot_cap_autostore"></div>
+      </div>
+    </div><div class="dept-card">
+      <div class="dch">
+        <div class="dch-name">QC</div>
+        <div class="dch-vol">5,300 ITN &nbsp;·&nbsp; clear by <span style="color:var(--amber);font-weight:600">8pm</span></div>
+      </div>
+      <div class="dcb">
+        <div class="si"><div class="stag am">AM 6am–2:30pm</div><input type="number" id="hc_am_qc" value="0" min="0" max="99" style="width:62px" oninput="HC[&#39;qc&#39;].am=parseInt(this.value)||0"></div>
+        <div class="si"><div class="stag pm">PM 1pm–9:30pm</div><input type="number" id="hc_pm_qc" value="0" min="0" max="99" style="width:62px" oninput="HC[&#39;qc&#39;].pm=parseInt(this.value)||0"></div>
+        <div class="si"><div class="stag fx">FLEX 8a–9p</div><input type="number" id="hc_fx_qc" value="0" min="0" max="99" style="width:62px" oninput="HC[&#39;qc&#39;].fx=parseInt(this.value)||0;updateFlexCounters()"></div>
+      </div>
+      <div class="ot-row">
+        <div class="si"><div class="stag ot">OT people</div><input type="number" id="ot_hc_qc" value="0" min="0" max="99" style="width:62px" oninput="HC[&#39;qc&#39;].otHc=parseInt(this.value)||0;updateOTCaps()"></div>
+        <div class="si"><div class="stag ot">OT hrs/person</div><input type="number" id="ot_hrs_qc" value="0" min="0" max="8" step="0.5" style="width:62px" oninput="HC[&#39;qc&#39;].otHrs=parseFloat(this.value)||0;updateOTCaps()"></div>
+        <div style="font-size:9px;color:var(--ot);text-align:right;padding-bottom:3px;line-height:1.3" id="ot_cap_qc"></div>
+      </div>
+    </div><div class="dept-card">
+      <div class="dch">
+        <div class="dch-name">Aggregation</div>
+        <div class="dch-vol">4,134 ITN &nbsp;·&nbsp; clear by <span style="color:var(--amber);font-weight:600">8pm</span></div>
+      </div>
+      <div class="dcb">
+        <div class="si"><div class="stag am">AM 6am–2:30pm</div><input type="number" id="hc_am_aggregation" value="0" min="0" max="99" style="width:62px" oninput="HC[&#39;aggregation&#39;].am=parseInt(this.value)||0"></div>
+        <div class="si"><div class="stag pm">PM 1pm–9:30pm</div><input type="number" id="hc_pm_aggregation" value="0" min="0" max="99" style="width:62px" oninput="HC[&#39;aggregation&#39;].pm=parseInt(this.value)||0"></div>
+        <div class="si"><div class="stag fx">FLEX 8a–9p</div><input type="number" id="hc_fx_aggregation" value="0" min="0" max="99" style="width:62px" oninput="HC[&#39;aggregation&#39;].fx=parseInt(this.value)||0;updateFlexCounters()"></div>
+      </div>
+      <div class="ot-row">
+        <div class="si"><div class="stag ot">OT people</div><input type="number" id="ot_hc_aggregation" value="0" min="0" max="99" style="width:62px" oninput="HC[&#39;aggregation&#39;].otHc=parseInt(this.value)||0;updateOTCaps()"></div>
+        <div class="si"><div class="stag ot">OT hrs/person</div><input type="number" id="ot_hrs_aggregation" value="0" min="0" max="8" step="0.5" style="width:62px" oninput="HC[&#39;aggregation&#39;].otHrs=parseFloat(this.value)||0;updateOTCaps()"></div>
+        <div style="font-size:9px;color:var(--ot);text-align:right;padding-bottom:3px;line-height:1.3" id="ot_cap_aggregation"></div>
+      </div>
+    </div><div class="dept-card">
+      <div class="dch">
+        <div class="dch-name">Packaging</div>
+        <div class="dch-vol">5,300 ITN &nbsp;·&nbsp; clear by <span style="color:var(--amber);font-weight:600">Full shift</span></div>
+      </div>
+      <div class="dcb">
+        <div class="si"><div class="stag am">AM 7am–3:30pm</div><input type="number" id="hc_am_packaging" value="0" min="0" max="99" style="width:62px" oninput="HC[&#39;packaging&#39;].am=parseInt(this.value)||0"></div>
+        <div class="si"><div class="stag pm">PM 1pm–9:30pm</div><input type="number" id="hc_pm_packaging" value="0" min="0" max="99" style="width:62px" oninput="HC[&#39;packaging&#39;].pm=parseInt(this.value)||0"></div>
+        <div class="si"><div class="stag fx">FLEX 8a–9p</div><input type="number" id="hc_fx_packaging" value="0" min="0" max="99" style="width:62px" oninput="HC[&#39;packaging&#39;].fx=parseInt(this.value)||0;updateFlexCounters()"></div>
+      </div>
+      <div class="ot-row">
+        <div class="si"><div class="stag ot">OT people</div><input type="number" id="ot_hc_packaging" value="0" min="0" max="99" style="width:62px" oninput="HC[&#39;packaging&#39;].otHc=parseInt(this.value)||0;updateOTCaps()"></div>
+        <div class="si"><div class="stag ot">OT hrs/person</div><input type="number" id="ot_hrs_packaging" value="0" min="0" max="8" step="0.5" style="width:62px" oninput="HC[&#39;packaging&#39;].otHrs=parseFloat(this.value)||0;updateOTCaps()"></div>
+        <div style="font-size:9px;color:var(--ot);text-align:right;padding-bottom:3px;line-height:1.3" id="ot_cap_packaging"></div>
+      </div>
+    </div><div class="dept-card">
+      <div class="dch">
+        <div class="dch-name">Shipping</div>
+        <div class="dch-vol">5,300 ITN &nbsp;·&nbsp; clear by <span style="color:var(--amber);font-weight:600">Full shift</span></div>
+      </div>
+      <div class="dcb">
+        <div class="si"><div class="stag am">AM 7am–3:30pm</div><input type="number" id="hc_am_shipping" value="0" min="0" max="99" style="width:62px" oninput="HC[&#39;shipping&#39;].am=parseInt(this.value)||0"></div>
+        <div class="si"><div class="stag pm">PM 1pm–9:30pm</div><input type="number" id="hc_pm_shipping" value="0" min="0" max="99" style="width:62px" oninput="HC[&#39;shipping&#39;].pm=parseInt(this.value)||0"></div>
+        <div class="si"><div class="stag fx">FLEX 8a–9p</div><input type="number" id="hc_fx_shipping" value="0" min="0" max="99" style="width:62px" oninput="HC[&#39;shipping&#39;].fx=parseInt(this.value)||0;updateFlexCounters()"></div>
+      </div>
+      <div class="ot-row">
+        <div class="si"><div class="stag ot">OT people</div><input type="number" id="ot_hc_shipping" value="0" min="0" max="99" style="width:62px" oninput="HC[&#39;shipping&#39;].otHc=parseInt(this.value)||0;updateOTCaps()"></div>
+        <div class="si"><div class="stag ot">OT hrs/person</div><input type="number" id="ot_hrs_shipping" value="0" min="0" max="8" step="0.5" style="width:62px" oninput="HC[&#39;shipping&#39;].otHrs=parseFloat(this.value)||0;updateOTCaps()"></div>
+        <div style="font-size:9px;color:var(--ot);text-align:right;padding-bottom:3px;line-height:1.3" id="ot_cap_shipping"></div>
+      </div>
+    </div></div>
+
+<!-- Flex panel -->
+<div class="flex-panel">
+  <div class="flex-header">
+    <div class="flex-title"><i class="ti ti-users" style="font-size:16px"></i> Flex team assignment</div>
+    <div style="font-size:11px;color:var(--flex)">8:00am – 9:00pm &nbsp;·&nbsp; <span id="flexNetHrsDisplay">11.25</span> net hrs &nbsp;·&nbsp; 80% dept rate</div>
+  </div>
+  <div class="flex-pool-bar">
+    <div><div style="font-size:10px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--ink3)">Pool</div><div class="pool-counter" id="poolCounter" style="color:var(--ink)">12</div></div>
+    <div><div style="font-size:10px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--ink3)">Assigned</div><div class="pool-counter" id="assignedCounter" style="color:var(--flex)">0</div></div>
+    <div><div style="font-size:10px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--ink3)">Remaining</div><div class="pool-counter" id="unassignedCounter" style="color:var(--ink2)">12</div></div>
+    <div style="margin-left: auto; font-size: 11px; color: var(--green);" id="flexPoolWarn"></div>
+  </div>
+  <div style="font-size:11px;color:var(--ink3);margin-bottom:.5rem;font-style:italic" id="flexPanelNote">Run the plan to see simulation-based flex recommendations.</div>
+  <div class="flex-dept-grid" id="flexDeptCards"><div class="fdc">
+        <div style="font-size:11px;font-weight:600;margin-bottom:2px">Pulling</div>
+        <div style="font-size:10px;color:var(--ink3);margin-bottom:3px">2,809 ITN &nbsp;·&nbsp; 17.6/hr &nbsp;·&nbsp; 7pm</div>
+        <div style="display:flex;align-items:center;gap:6px"><label style="font-size:9px;letter-spacing:.05em;text-transform:uppercase;color:var(--flex);margin:0">Assign</label>
+        <input type="number" id="hc_fx_pulling_b" value="0" min="0" max="12" style="width:54px;font-size:12px;border-color:var(--flex-border)" oninput="syncFlex(&#39;pulling&#39;,this.value);updateFlexCounters()"></div>
+        <div style="font-size:10px;color:var(--ink3);margin-top:3px;font-style:italic">Est. gap: 8 HC — run plan to confirm</div>
+      </div><div class="fdc">
+        <div style="font-size:11px;font-weight:600;margin-bottom:2px">Picking</div>
+        <div style="font-size:10px;color:var(--ink3);margin-bottom:3px">2,809 ITN &nbsp;·&nbsp; 14.4/hr &nbsp;·&nbsp; 7pm</div>
+        <div style="display:flex;align-items:center;gap:6px"><label style="font-size:9px;letter-spacing:.05em;text-transform:uppercase;color:var(--flex);margin:0">Assign</label>
+        <input type="number" id="hc_fx_picking_b" value="0" min="0" max="12" style="width:54px;font-size:12px;border-color:var(--flex-border)" oninput="syncFlex(&#39;picking&#39;,this.value);updateFlexCounters()"></div>
+        <div style="font-size:10px;color:var(--ink3);margin-top:3px;font-style:italic">Est. gap: 11 HC — run plan to confirm</div>
+      </div><div class="fdc">
+        <div style="font-size:11px;font-weight:600;margin-bottom:2px">↳ DryPack</div>
+        <div style="font-size:10px;color:var(--ink3);margin-bottom:3px">393 ITN &nbsp;·&nbsp; 6.4/hr &nbsp;·&nbsp; 7pm</div>
+        <div style="display:flex;align-items:center;gap:6px"><label style="font-size:9px;letter-spacing:.05em;text-transform:uppercase;color:var(--flex);margin:0">Assign</label>
+        <input type="number" id="hc_fx_drypack_b" value="0" min="0" max="12" style="width:54px;font-size:12px;border-color:var(--flex-border)" oninput="syncFlex(&#39;drypack&#39;,this.value);updateFlexCounters()"></div>
+        <div style="font-size:10px;color:var(--ink3);margin-top:3px;font-style:italic">Est. gap: 4 HC — run plan to confirm</div>
+      </div><div class="fdc">
+        <div style="font-size:11px;font-weight:600;margin-bottom:2px">↳ Reel Table</div>
+        <div style="font-size:10px;color:var(--ink3);margin-bottom:3px">197 ITN &nbsp;·&nbsp; 4.8/hr &nbsp;·&nbsp; 7pm</div>
+        <div style="display:flex;align-items:center;gap:6px"><label style="font-size:9px;letter-spacing:.05em;text-transform:uppercase;color:var(--flex);margin:0">Assign</label>
+        <input type="number" id="hc_fx_reeltable_b" value="0" min="0" max="12" style="width:54px;font-size:12px;border-color:var(--flex-border)" oninput="syncFlex(&#39;reeltable&#39;,this.value);updateFlexCounters()"></div>
+        <div style="font-size:10px;color:var(--ink3);margin-top:3px;font-style:italic">Est. gap: 3 HC — run plan to confirm</div>
+      </div><div class="fdc">
+        <div style="font-size:11px;font-weight:600;margin-bottom:2px">AutoStore</div>
+        <div style="font-size:10px;color:var(--ink3);margin-bottom:3px">2,491 ITN &nbsp;·&nbsp; 16.8/hr &nbsp;·&nbsp; 7pm</div>
+        <div style="display:flex;align-items:center;gap:6px"><label style="font-size:9px;letter-spacing:.05em;text-transform:uppercase;color:var(--flex);margin:0">Assign</label>
+        <input type="number" id="hc_fx_autostore_b" value="0" min="0" max="12" style="width:54px;font-size:12px;border-color:var(--flex-border)" oninput="syncFlex(&#39;autostore&#39;,this.value);updateFlexCounters()"></div>
+        <div style="font-size:10px;color:var(--ink3);margin-top:3px;font-style:italic">Est. gap: 7 HC — run plan to confirm</div>
+      </div><div class="fdc">
+        <div style="font-size:11px;font-weight:600;margin-bottom:2px">QC</div>
+        <div style="font-size:10px;color:var(--ink3);margin-bottom:3px">5,300 ITN &nbsp;·&nbsp; 28.0/hr &nbsp;·&nbsp; 8pm</div>
+        <div style="display:flex;align-items:center;gap:6px"><label style="font-size:9px;letter-spacing:.05em;text-transform:uppercase;color:var(--flex);margin:0">Assign</label>
+        <input type="number" id="hc_fx_qc_b" value="0" min="0" max="12" style="width:54px;font-size:12px;border-color:var(--flex-border)" oninput="syncFlex(&#39;qc&#39;,this.value);updateFlexCounters()"></div>
+        <div style="font-size:10px;color:var(--ink3);margin-top:3px;font-style:italic">Est. gap: 10 HC — run plan to confirm</div>
+      </div><div class="fdc">
+        <div style="font-size:11px;font-weight:600;margin-bottom:2px">Aggregation</div>
+        <div style="font-size:10px;color:var(--ink3);margin-bottom:3px">4,134 ITN &nbsp;·&nbsp; 72.0/hr &nbsp;·&nbsp; 8pm</div>
+        <div style="display:flex;align-items:center;gap:6px"><label style="font-size:9px;letter-spacing:.05em;text-transform:uppercase;color:var(--flex);margin:0">Assign</label>
+        <input type="number" id="hc_fx_aggregation_b" value="0" min="0" max="12" style="width:54px;font-size:12px;border-color:var(--flex-border)" oninput="syncFlex(&#39;aggregation&#39;,this.value);updateFlexCounters()"></div>
+        <div style="font-size:10px;color:var(--ink3);margin-top:3px;font-style:italic">Est. gap: 3 HC — run plan to confirm</div>
+      </div><div class="fdc">
+        <div style="font-size:11px;font-weight:600;margin-bottom:2px">Packaging</div>
+        <div style="font-size:10px;color:var(--ink3);margin-bottom:3px">5,300 ITN &nbsp;·&nbsp; 24.8/hr &nbsp;·&nbsp; Full shift</div>
+        <div style="display:flex;align-items:center;gap:6px"><label style="font-size:9px;letter-spacing:.05em;text-transform:uppercase;color:var(--flex);margin:0">Assign</label>
+        <input type="number" id="hc_fx_packaging_b" value="0" min="0" max="12" style="width:54px;font-size:12px;border-color:var(--flex-border)" oninput="syncFlex(&#39;packaging&#39;,this.value);updateFlexCounters()"></div>
+        <div style="font-size:10px;color:var(--ink3);margin-top:3px;font-style:italic">Est. gap: 12 HC — run plan to confirm</div>
+      </div><div class="fdc">
+        <div style="font-size:11px;font-weight:600;margin-bottom:2px">Shipping</div>
+        <div style="font-size:10px;color:var(--ink3);margin-bottom:3px">5,300 ITN &nbsp;·&nbsp; 320.0/hr &nbsp;·&nbsp; Full shift</div>
+        <div style="display:flex;align-items:center;gap:6px"><label style="font-size:9px;letter-spacing:.05em;text-transform:uppercase;color:var(--flex);margin:0">Assign</label>
+        <input type="number" id="hc_fx_shipping_b" value="0" min="0" max="12" style="width:54px;font-size:12px;border-color:var(--flex-border)" oninput="syncFlex(&#39;shipping&#39;,this.value);updateFlexCounters()"></div>
+        <div style="font-size:10px;color:var(--ink3);margin-top:3px;font-style:italic">Est. gap: 1 HC — run plan to confirm</div>
+      </div></div>
+</div>
+
+<!-- Generate button -->
+<button class="generate-btn" onclick="runPlan()">
+  <i class="ti ti-calculator"></i> Generate Labor Plan
+</button>
+
+<!-- Results -->
+<div id="resultsSection" style="display:none">
+  <!-- Print header -->
+  <div class="print-only print-header">
+    <div class="print-brand">Master Electronics</div>
+    <div style="display:flex;justify-content:space-between;align-items:flex-end">
+      <div class="print-title">DC Labor Plan</div>
+      <div id="printStatus"></div>
+    </div>
+    <div class="print-meta" id="printMeta"></div>
+  </div>
+
+  <div class="summary-strip" id="summaryStrip"></div>
+
+  <div class="tab-bar no-print">
+    <button class="active" onclick="showRTab(&#39;recs&#39;)"><i class="ti ti-list-check" style="font-size:12px"></i> Recommendations</button>
+    <button onclick="showRTab(&#39;hc&#39;)"><i class="ti ti-table" style="font-size:12px"></i> HC by hour</button>
+    <button onclick="showRTab(&#39;rem&#39;)"><i class="ti ti-stack" style="font-size:12px"></i> ITNs remaining</button>
+    <button onclick="showRTab(&#39;act&#39;)"><i class="ti ti-clipboard-check" style="font-size:12px"></i> Actuals</button>
+    <button onclick="showRTab(&#39;bd&#39;)"><i class="ti ti-chart-line" style="font-size:12px"></i> Burn-down</button>
+  </div>
+
+  <div id="rpane-recs" class="rpane active">
+    <div id="recsContent"></div>
+  </div>
+
+  <div id="rpane-hc" class="rpane">
+    <div style="font-size:11px;color:var(--ink2);margin-bottom:.5rem">
+      <strong>Stf</strong> = staffed &nbsp;|&nbsp; <span style="color:var(--purple)"><strong>Pull</strong></span> = steady-state ref HC &nbsp;|&nbsp; <strong>Dem</strong> = demand-curve HC &nbsp;|&nbsp; <strong>Gap</strong> = staffed − pull ref &nbsp;|&nbsp; <span style="color:var(--blue)">Blue</span> = overlap window
+    </div>
+    <div class="tbl-wrap" id="hcTable"></div>
+  </div>
+
+  <div id="rpane-rem" class="rpane">
+    <div style="font-size:11px;color:var(--ink2);margin-bottom:.5rem"><span style="font-weight:600;color:var(--amber)">▲ Target column</span> = clear-by hour. Red cells at or past target = backlog not cleared. Packaging &amp; Shipping run to full end time.</div>
+    <div class="tbl-wrap" id="remTable"></div>
+  </div>
+
+  <div id="rpane-act" class="rpane">
+    <div id="actContent"></div>
+  </div>
+
+  <div id="rpane-bd" class="rpane">
+    <div class="chart-wrap" style="margin-bottom:1rem">
+      <div style="font-size:11px;font-weight:600;color:var(--ink2);margin-bottom:.5rem">Cumulative volume arrived vs processed</div>
+      <div style="display:flex;gap:14px;flex-wrap:wrap;margin-bottom:8px;font-size:11px;color:var(--ink3)">
+        <span><span style="display:inline-block;width:10px;height:10px;border-radius:2px;background:#0f4c81;margin-right:3px;vertical-align:middle"></span>Volume arrived</span>
+        <span><span style="display:inline-block;width:10px;height:10px;border-radius:2px;background:#1a6b3c;margin-right:3px;vertical-align:middle"></span>Processed (AM + PM + Flex)</span>
+      </div>
+      <div style="position:relative;width:100%;height:260px"><canvas id="bdCanvas" role="img" aria-label="Cumulative burn-down chart">Burn-down chart.</canvas></div>
+    </div>
+    <div class="chart-wrap">
+      <div style="font-size:11px;font-weight:600;color:var(--ink2);margin-bottom:.5rem">Total ITNs remaining by hour</div>
+      <div style="position:relative;width:100%;height:200px"><canvas id="remCanvas" role="img" aria-label="ITNs remaining by hour">ITNs remaining.</canvas></div>
+    </div>
+  </div>
+</div>
+
+<div class="app-footer no-print">MASTER ELECTRONICS &nbsp;·&nbsp; DC LABOR PLANNER &nbsp;·&nbsp; ADMIN PIN: 1234</div>
+
+</div><!-- /body-wrap -->
+</div><!-- /app -->
+
+<script>
+// Resilient Chart.js loader — tries cdnjs first, falls back to jsDelivr
+(function(){
+  function loadScript(src,onok,onerr){
+    var s=document.createElement('script');s.src=src;
+    s.onload=onok;s.onerror=onerr;document.head.appendChild(s);
+  }
+  var cdn1='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js';
+  var cdn2='https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js';
+  loadScript(cdn1,null,function(){loadScript(cdn2,null,function(){
+    window._chartJsMissing=true;
+    console.warn('Chart.js could not be loaded — charts will be hidden.');
+  });});
+})();
+</script>
+<script>
+const ADMIN_PIN='1234';
+const HOURS=[2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21];
+const HLBL=['2am','3am','4am','5am','6am','7am','8am','9am','10am','11am','12pm','1pm','2pm','3pm','4pm','5pm','6pm','7pm','8pm','9pm'];
+const DPCTS=[15.948,0.314,0.523,3.071,8.149,7.032,9.004,8.218,8.515,8.864,8.724,8.864,8.620,3.385,0.768,0,0,0,0,0];
+const DEPTS=[
+  {id:'pulling',    lbl:'Pulling',    top:true, ps:false,dPct:53, rate:22, dAm:7, dPm:5, start:'05:00',end:'20:30',lag:0,co:1},
+  {id:'picking',    lbl:'Picking',    top:true, ps:false,dPct:53, rate:18, dAm:8, dPm:6, start:'06:00',end:'20:30',lag:1,co:1},
+  {id:'drypack',    lbl:'DryPack',    top:false,ps:true, dPct:null,rate:8,  dAm:2, dPm:2, start:'06:00',end:'20:30',lag:1,co:1},
+  {id:'reeltable',  lbl:'Reel Table', top:false,ps:true, dPct:null,rate:6,  dAm:1, dPm:1, start:'06:00',end:'20:30',lag:1,co:1},
+  {id:'autostore',  lbl:'AutoStore',  top:true, ps:false,dPct:47, rate:21, dAm:6, dPm:4, start:'04:00',end:'20:30',lag:0,co:1},
+  {id:'qc',         lbl:'QC',         top:true, ps:false,dPct:100,rate:35, dAm:9, dPm:10,start:'06:00',end:'21:30',lag:2,co:1},
+  {id:'aggregation',lbl:'Aggregation',top:true, ps:false,dPct:78, rate:90, dAm:7, dPm:4, start:'06:00',end:'21:30',lag:3,co:1},
+  {id:'packaging',  lbl:'Packaging',  top:true, ps:false,dPct:100,rate:31, dAm:8, dPm:12,start:'07:00',end:'21:30',lag:4,co:0},
+  {id:'shipping',   lbl:'Shipping',   top:true, ps:false,dPct:100,rate:400,dAm:4, dPm:4, start:'07:00',end:'21:30',lag:5,co:0},
+];
+
+let lastDR=null,bdCI=null,remCI=null,adminOpen=false;
+
+// Persistent headcount state — survives card rebuilds
+const HC={};
+DEPTS.forEach(d=>{
+  HC[d.id]={am:0, pm:0, fx:0, otHc:0, otHrs:0};
+});
+
+function saveHC(){
+  DEPTS.forEach(d=>{
+    const am=document.getElementById('hc_am_'+d.id);
+    const pm=document.getElementById('hc_pm_'+d.id);
+    const fx=document.getElementById('hc_fx_'+d.id);
+    const oh=document.getElementById('ot_hc_'+d.id);
+    const or_=document.getElementById('ot_hrs_'+d.id);
+    if(am)HC[d.id].am=parseInt(am.value)||0;
+    if(pm)HC[d.id].pm=parseInt(pm.value)||0;
+    if(fx)HC[d.id].fx=parseInt(fx.value)||0;
+    if(oh)HC[d.id].otHc=parseInt(oh.value)||0;
+    if(or_)HC[d.id].otHrs=parseFloat(or_.value)||0;
+  });
+}
+const gv=id=>{const e=document.getElementById(id);return e?parseFloat(e.value)||0:0;};
+const gi=id=>{const e=document.getElementById(id);return e?parseInt(e.value)||0:0;};
+const gs=id=>{const e=document.getElementById(id);return e?e.value:'';};
+const t2d=t=>{if(!t||!t.includes(':'))return 6;const[h,m]=t.split(':');return parseInt(h)+parseInt(m||0)/60;};
+function d2t(d){const h=Math.floor(d),m=Math.round((d-h)*60),h12=h===0?12:h>12?h-12:h,sfx=h<12?'am':h===12?'pm':'pm';return h12+(m>0?':'+String(m).padStart(2,'0'):'')+sfx;}
+function getWin(id){
+  const sl=gv('a_shift')||8.5,brk=gv('a_break')||0.75;
+  const d=DEPTS.find(x=>x.id===id);
+  const s=t2d(gs('as_'+id)||d.start),e=t2d(gs('ae_'+id)||d.end);
+  const amS=s,amE=s+sl,pmS=e-sl,pmE=e;
+  const olS=Math.max(amS,pmS),olE=Math.min(amE,pmE),olH=Math.max(0,olE-olS);
+  return{amS,amE,pmS,pmE,olS,olE,olH,nh:Math.max(0,sl-brk)};
+}
+const amAct=(id,h)=>{const w=getWin(id);return h>=Math.floor(w.amS)&&h<Math.ceil(w.amE);};
+const pmAct=(id,h)=>{const w=getWin(id);return h>=Math.floor(w.pmS)&&h<Math.ceil(w.pmE);};
+const isOL=(id,h)=>{const w=getWin(id);return w.olH>0&&h>=Math.floor(w.olS)&&h<Math.ceil(w.olE);};
+const isAct=(id,h)=>amAct(id,h)||pmAct(id,h);
+const flexAct=(h)=>{const fs=t2d(gs('a_flexStart')||'08:00'),fe=t2d(gs('a_flexEnd')||'21:00');return h>=Math.floor(fs)&&h<Math.ceil(fe);};
+const getFlexNH=()=>Math.max(0,(t2d(gs('a_flexEnd')||'21:00')-t2d(gs('a_flexStart')||'08:00'))-(gv('a_flexBreak')||1.75));
+function getClearTargetHour(id){
+  const d=DEPTS.find(x=>x.id===id);
+  const co=parseFloat(gs('aco_'+id));const offset=isNaN(co)?d.co:co;
+  return Math.floor(t2d(gs('ae_'+id)||d.end)-offset);
+}
+function getClearOffset(id){
+  const d=DEPTS.find(x=>x.id===id);const co=parseFloat(gs('aco_'+id));return isNaN(co)?d.co:co;
+}
+function getDPcts(){
+  const pp=(gv('a_pickPct')||53)/100,dp=(gv('a_dpPct')||14)/100,rp=(gv('a_rpPct')||7)/100,ap=(gv('a_asPct')||47)/100;
+  const dP={};DEPTS.forEach(d=>{dP[d.id]=d.ps?null:(gv('adp_'+d.id)||d.dPct||0)/100;});
+  dP.drypack=pp*dp;dP.reeltable=pp*rp;dP.autostore=ap;return dP;
+}
+function getArrCurve(id,tv,dP){
+  const lag=Math.round(gv('alg_'+id)||(DEPTS.find(d=>d.id===id).lag));
+  const arr=new Array(HOURS.length).fill(0);
+  DPCTS.forEach((pct,i)=>{const j=Math.min(i+lag,HOURS.length-1);arr[j]+=tv*(pct/100)*(dP[id]||0);});
+  return arr;
+}
+function buildDeptCards(){
+  const c=document.getElementById('deptCards');if(!c)return;
+  saveHC(); // capture any edits before we wipe the DOM
+  c.innerHTML='';
+  const tv=gv('d_vol')||5300,dP=getDPcts();
+  DEPTS.forEach(d=>{
+    const w=getWin(d.id),isSub=!d.top,vol=Math.round(tv*(dP[d.id]||0));
+    const co=getClearOffset(d.id),tgt=getClearTargetHour(d.id);
+    const tgtDisp=co===0?'Full shift':d2t(tgt);
+    const hc=HC[d.id];
+    c.innerHTML+=`<div class="dept-card${isSub?' sub-card':''}">
+      <div class="dch">
+        <div class="dch-name">${isSub?'↳ ':''}${d.lbl}</div>
+        <div class="dch-vol">${vol.toLocaleString()} ITN &nbsp;·&nbsp; clear by <span style="color:var(--amber);font-weight:600">${tgtDisp}</span></div>
+      </div>
+      <div class="dcb">
+        <div class="si"><div class="stag am">AM ${d2t(w.amS)}–${d2t(w.amE)}</div><input type="number" id="hc_am_${d.id}" value="${hc.am}" min="0" max="99" style="width:62px" oninput="HC['${d.id}'].am=parseInt(this.value)||0"></div>
+        <div class="si"><div class="stag pm">PM ${d2t(w.pmS)}–${d2t(w.pmE)}</div><input type="number" id="hc_pm_${d.id}" value="${hc.pm}" min="0" max="99" style="width:62px" oninput="HC['${d.id}'].pm=parseInt(this.value)||0"></div>
+        <div class="si"><div class="stag fx">FLEX 8a–9p</div><input type="number" id="hc_fx_${d.id}" value="${hc.fx}" min="0" max="99" style="width:62px" oninput="HC['${d.id}'].fx=parseInt(this.value)||0;updateFlexCounters()"></div>
+      </div>
+      <div class="ot-row">
+        <div class="si"><div class="stag ot">OT people</div><input type="number" id="ot_hc_${d.id}" value="${hc.otHc}" min="0" max="99" style="width:62px" oninput="HC['${d.id}'].otHc=parseInt(this.value)||0;updateOTCaps()"></div>
+        <div class="si"><div class="stag ot">OT hrs/person</div><input type="number" id="ot_hrs_${d.id}" value="${hc.otHrs}" min="0" max="8" step="0.5" style="width:62px" oninput="HC['${d.id}'].otHrs=parseFloat(this.value)||0;updateOTCaps()"></div>
+        <div style="font-size:9px;color:var(--ot);text-align:right;padding-bottom:3px;line-height:1.3" id="ot_cap_${d.id}"></div>
+      </div>
+    </div>`;
+  });
+  buildFlexDeptCards();updateFlexCounters();updateOTCaps();
+  const nh=((gv('a_shift')||8.5)-(gv('a_break')||0.75)).toFixed(2);
+  const nd=document.getElementById('netHrsDisplay');
+  if(nd)nd.innerHTML=`Net hrs/shift: <strong>${nh}</strong><br>Flex net hrs: <strong>${getFlexNH().toFixed(2)}</strong>`;
+}
+function buildFlexDeptCards(){
+  const c=document.getElementById('flexDeptCards');if(!c)return;
+  c.innerHTML='';
+  const pool=gv('a_flexPool')||12,tv=gv('d_vol')||5300,dP=getDPcts();
+  const eff=(gv('a_eff')||100)/100,fxEff=(gv('a_flexEff')||80)/100;
+  DEPTS.forEach(d=>{
+    const rate=gv('art_'+d.id)||d.rate,fxRate=rate*fxEff;
+    const totalVol=tv*(dP[d.id]||0),isSub=!d.top;
+    const assigned=HC[d.id].fx;
+    const co=getClearOffset(d.id),tgt=getClearTargetHour(d.id),tgtDisp=co===0?'Full shift':d2t(tgt);
+    if(lastDR&&lastDR[d.id]){
+      const dr=lastDR[d.id];
+      let cardCls='fdc',statusHtml='';
+      if(!dr.clearFailed){
+        cardCls='fdc fdc-ok';
+        statusHtml=`<div style="font-size:10px;color:var(--green);font-weight:600;margin-top:3px">✓ Clears by ${tgtDisp}${assigned>0?' · '+assigned+' flex assigned':' · no flex needed'}</div>`;
+      } else {
+        cardCls='fdc fdc-fail';
+        const rem=dr.remainingAtTarget;
+        const recFx=Math.min(Math.ceil(fxRate>0?rem/(fxRate*getFlexNH()):0),pool);
+        statusHtml=`<div style="font-size:10px;color:var(--red);font-weight:600;margin-top:3px">⚠ ${rem.toLocaleString()} ITNs remain · add ${recFx} flex</div>`;
+      }
+      c.innerHTML+=`<div class="${cardCls}">
+        <div style="font-size:11px;font-weight:600;margin-bottom:2px">${isSub?'↳ ':''}${d.lbl}</div>
+        <div style="font-size:10px;color:var(--ink3);margin-bottom:3px">${Math.round(totalVol).toLocaleString()} ITN &nbsp;·&nbsp; ${fxRate.toFixed(1)}/hr &nbsp;·&nbsp; ${tgtDisp}</div>
+        <div style="display:flex;align-items:center;gap:6px"><label style="font-size:9px;letter-spacing:.05em;text-transform:uppercase;color:var(--flex);margin:0">Assign</label>
+        <input type="number" id="hc_fx_${d.id}_b" value="${assigned}" min="0" max="${pool}" style="width:54px;font-size:12px;border-color:var(--flex-border)" oninput="syncFlex('${d.id}',this.value);updateFlexCounters()"></div>
+        ${statusHtml}
+      </div>`;
+    } else {
+      const activeHours=HOURS.filter(h=>isAct(d.id,h)).length;
+      const pullReqHC=rate>0&&eff>0&&activeHours>0?Math.ceil((totalVol/activeHours)/(rate*eff)):0;
+      const amHC=HC[d.id].am,pmHC=HC[d.id].pm;
+      const maxGap=Math.max(pullReqHC-amHC,pullReqHC-pmHC,0);
+      c.innerHTML+=`<div class="fdc">
+        <div style="font-size:11px;font-weight:600;margin-bottom:2px">${isSub?'↳ ':''}${d.lbl}</div>
+        <div style="font-size:10px;color:var(--ink3);margin-bottom:3px">${Math.round(totalVol).toLocaleString()} ITN &nbsp;·&nbsp; ${fxRate.toFixed(1)}/hr &nbsp;·&nbsp; ${tgtDisp}</div>
+        <div style="display:flex;align-items:center;gap:6px"><label style="font-size:9px;letter-spacing:.05em;text-transform:uppercase;color:var(--flex);margin:0">Assign</label>
+        <input type="number" id="hc_fx_${d.id}_b" value="${assigned}" min="0" max="${pool}" style="width:54px;font-size:12px;border-color:var(--flex-border)" oninput="syncFlex('${d.id}',this.value);updateFlexCounters()"></div>
+        <div style="font-size:10px;color:var(--ink3);margin-top:3px;font-style:italic">${maxGap>0?'Est. gap: '+maxGap+' HC — run plan to confirm':'Appears met — run plan to confirm'}</div>
+      </div>`;
+    }
+  });
+  updateFlexCounters();
+}
+function syncFlex(id,val){
+  const v=parseInt(val)||0;
+  HC[id].fx=v;
+  ['hc_fx_'+id,'hc_fx_'+id+'_b'].forEach(eid=>{const el=document.getElementById(eid);if(el&&el!==document.activeElement)el.value=v;});
+}
+function updateFlexCounters(){
+  const pool=gv('a_flexPool')||12;
+  const assigned=DEPTS.reduce((s,d)=>s+HC[d.id].fx,0),rem=pool-assigned;
+  const set=(id,v,color)=>{const el=document.getElementById(id);if(el){el.textContent=v;if(color)el.style.color=color;}};
+  set('poolCounter',pool);set('assignedCounter',assigned);
+  set('unassignedCounter',rem,rem<0?'var(--red)':rem===0?'var(--green)':'var(--ink2)');
+  const pw=document.getElementById('flexPoolWarn');
+  if(pw){pw.textContent=rem<0?`⚠ Over-assigned by ${Math.abs(rem)}`:rem===0?'✓ Fully allocated':'';pw.style.color=rem<0?'var(--red)':'var(--green)';}
+  const fnd=document.getElementById('flexNetHrsDisplay');if(fnd)fnd.textContent=getFlexNH().toFixed(2);
+}
+function updateOTCaps(){
+  const eff=(gv('a_eff')||100)/100;
+  DEPTS.forEach(d=>{
+    const el=document.getElementById('ot_cap_'+d.id);if(!el)return;
+    const hc=HC[d.id].otHc,hrs=HC[d.id].otHrs;
+    const rate=gv('art_'+d.id)||d.rate;
+    if(hc>0&&hrs>0){
+      const cap=Math.round(hc*hrs*rate*eff);
+      el.innerHTML=`+${cap.toLocaleString()} ITN capacity`;
+    } else {
+      el.textContent='';
+    }
+  });
+}
+function refreshCards(){lastDR=null;buildDeptCards();}
+function buildAdminDeptTbl(){
+  const tb=document.getElementById('adminDeptTbl');if(!tb)return;tb.innerHTML='';
+  DEPTS.forEach(d=>{
+    const pc=d.ps?`<td style="color:#aaa;font-size:10px;padding:2px 5px">derived</td>`
+      :`<td><input type="number" id="adp_${d.id}" value="${d.dPct}" style="width:50px;text-align:right"></td>`;
+    tb.innerHTML+=`<tr${!d.top?' class="sub-r"':''}>
+      <td style="${!d.top?'padding-left:12px;color:var(--ink2)':'font-weight:600'}">${!d.top?'↳ ':''}${d.lbl}</td>${pc}
+      <td><input type="number" id="art_${d.id}" value="${d.rate}" style="width:50px;text-align:right"></td>
+      <td><input type="time" id="as_${d.id}" value="${d.start}" style="width:88px"></td>
+      <td><input type="time" id="ae_${d.id}" value="${d.end}" style="width:88px"></td>
+      <td><input type="number" id="alg_${d.id}" value="${d.lag}" min="0" max="12" step="0.5" style="width:50px;text-align:right"></td>
+      <td><input type="number" id="aco_${d.id}" value="${d.co}" min="0" max="4" step="0.5" style="width:50px;text-align:right;color:var(--amber);border-color:var(--amber-border)"></td>
+    </tr>`;
+  });
+}
+function updateAdminNotes(){
+  const nh=(gv('a_shift')||8.5)-(gv('a_break')||0.75),fnh=getFlexNH();
+  const el=document.getElementById('adminNote');
+  if(el)el.textContent='Dept shift net hrs: '+nh.toFixed(2)+'  ·  Flex net hrs: '+fnh.toFixed(2);
+}
+function toggleAdmin(){
+  if(adminOpen){closeAdmin();return;}
+  document.getElementById('pinOverlay').style.display='block';
+  document.getElementById('pinInput').value='';document.getElementById('pinErr').textContent='';
+  document.getElementById('pinInput').focus();
+}
+function checkPin(){
+  if(document.getElementById('pinInput').value===ADMIN_PIN){
+    document.getElementById('pinOverlay').style.display='none';
+    document.getElementById('adminPanel').style.display='block';
+    adminOpen=true;buildAdminDeptTbl();updateAdminNotes();
+  } else {document.getElementById('pinErr').textContent='Incorrect PIN. Try again.';}
+}
+function closeAdmin(){document.getElementById('adminPanel').style.display='none';adminOpen=false;buildDeptCards();}
+
+function runPlan(){
+  const tv=gv('d_vol')||5300;
+  const eff=(gv('a_eff')||100)/100,att=(gv('a_att')||95)/100,fxEff=(gv('a_flexEff')||80)/100;
+  const dP=getDPcts();
+  saveHC(); // ensure HC is up to date before simulation
+  const rates={},amHC={},pmHC={},fxHC={},otHC={},otHrs={};
+  DEPTS.forEach(d=>{
+    rates[d.id]=gv('art_'+d.id)||d.rate;
+    amHC[d.id]=HC[d.id].am;
+    pmHC[d.id]=HC[d.id].pm;
+    fxHC[d.id]=HC[d.id].fx;
+    otHC[d.id]=HC[d.id].otHc;
+    otHrs[d.id]=HC[d.id].otHrs;
+  });
+  const DR={};
+  DEPTS.forEach(d=>{
+    const arrival=getArrCurve(d.id,tv,dP);
+    const totalVol=tv*(dP[d.id]||0);
+    const activeHours=HOURS.filter(h=>isAct(d.id,h)).length;
+    const pullReqHC=rates[d.id]>0&&eff>0&&activeHours>0?Math.ceil((totalVol/activeHours)/(rates[d.id]*eff)):0;
+    const fxRate=rates[d.id]*fxEff;
+    const clearTargetHour=getClearTargetHour(d.id),clearOffset=getClearOffset(d.id);
+    const otStart=Math.floor(t2d(gs('ae_'+d.id)||d.end)); // OT begins at shift end
+    const otEnd=otStart+Math.ceil(otHrs[d.id]);
+    let backlog=0;
+    const hourData=HOURS.map((hInt,hi)=>{
+      const amA=amAct(d.id,hInt),pmA=pmAct(d.id,hInt),ol=isOL(d.id,hInt),fxA=flexAct(hInt);
+      const otA=otHC[d.id]>0&&otHrs[d.id]>0&&hInt>=otStart&&hInt<otEnd;
+      const dStf=(amA?amHC[d.id]:0)+(pmA?pmHC[d.id]:0),fStf=fxA?fxHC[d.id]:0,oStf=otA?otHC[d.id]:0;
+      const cap=dStf*rates[d.id]*eff+fStf*fxRate+oStf*rates[d.id]*eff;
+      backlog+=arrival[hi];
+      const proc=Math.min(backlog,cap);backlog=Math.max(0,backlog-proc);
+      const rem=Math.round(backlog);
+      const pushRHC=arrival[hi]>0&&rates[d.id]>0&&eff>0&&att>0?Math.ceil(Math.ceil(arrival[hi]/rates[d.id]/eff)/att):0;
+      return{amA,pmA,ol,fxA,otA,active:amA||pmA,dStf,fStf,oStf,arriving:arrival[hi],processed:proc,remaining:rem,
+             pullReqHC,pushReqHC:pushRHC,
+             isTarget:clearOffset>0&&hInt===clearTargetHour,
+             isPast:clearOffset>0&&hInt>clearTargetHour};
+    });
+    const tIdx=HOURS.indexOf(clearTargetHour);
+    const clearFailed=clearOffset>0&&tIdx>=0&&hourData.slice(tIdx).some(hd=>hd.remaining>0);
+    const remainingAtTarget=tIdx>=0?hourData[tIdx].remaining:0;
+    DR[d.id]={hourData,totalVol,activeHours,pullReqHC,amHC:amHC[d.id],pmHC:pmHC[d.id],fxHC:fxHC[d.id],
+              otHC:otHC[d.id],otHrs:otHrs[d.id],otStart,otEnd,
+              rate:rates[d.id],fxRate,clearTargetHour,clearOffset,clearFailed,remainingAtTarget};
+  });
+  lastDR=DR;
+  renderSummary(DR,tv);renderRecs(DR,tv,eff);renderHCTable(DR);renderRemTable(DR,tv);
+  try{
+    if(window._chartJsMissing||typeof Chart==='undefined'){
+      document.getElementById('rpane-bd').innerHTML='<div style="padding:1rem;color:var(--ink3);font-size:12px">Charts unavailable — Chart.js library could not be loaded. All other plan data above is unaffected.</div>';
+    } else {
+      renderCharts(DR,tv,eff);
+    }
+  }catch(e){
+    console.error('Chart render error:',e);
+    document.getElementById('rpane-bd').innerHTML='<div style="padding:1rem;color:var(--ink3);font-size:12px">Chart render error: '+e.message+'</div>';
+  }
+  const np=document.getElementById('flexPanelNote');
+  if(np)np.textContent='Results below reflect the simulation just run. Adjust flex and re-run to update.';
+  buildFlexDeptCards();
+  if(document.getElementById('rpane-act')&&document.getElementById('rpane-act').classList.contains('active')) renderActuals();
+  const dv=gs('d_date');
+  const ds=dv?new Date(dv+'T12:00:00').toLocaleDateString('en-US',{weekday:'long',year:'numeric',month:'long',day:'numeric'}):'Today';
+  document.getElementById('printMeta').textContent=ds+' · '+tv.toLocaleString()+' ITN/Lines · Generated '+new Date().toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'});
+  document.getElementById('resultsSection').style.display='block';
+  document.getElementById('resultsSection').scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+function renderSummary(DR,tv){
+  const totalAm=DEPTS.reduce((s,d)=>s+DR[d.id].amHC,0);
+  const totalPm=DEPTS.reduce((s,d)=>s+DR[d.id].pmHC,0);
+  const totalFx=DEPTS.reduce((s,d)=>s+DR[d.id].fxHC,0);
+  const totalOTHC=DEPTS.reduce((s,d)=>s+DR[d.id].otHC,0);
+  const totalOTLaborHrs=DEPTS.reduce((s,d)=>s+(DR[d.id].otHC*DR[d.id].otHrs),0);
+  const pool=gv('a_flexPool')||12;
+  const finalBL=DEPTS.reduce((s,d)=>s+(DR[d.id].hourData[DR[d.id].hourData.length-1]?.remaining||0),0);
+  const pctComp=tv>0?Math.round((tv-finalBL)/tv*100):100;
+  const clearMisses=DEPTS.filter(d=>DR[d.id].clearFailed&&DR[d.id].clearOffset>0);
+  const overallCls=clearMisses.length>0?'bad':'good';
+  const statusTxt=clearMisses.length>0?clearMisses.length+' dept'+(clearMisses.length>1?'s':'')+' miss clear target':'All clear targets met';
+  const compCls=pctComp>=95?'good':pctComp>=80?'warn':'bad';
+  const otTile=totalOTLaborHrs>0
+    ?`<div class="metric-tile warn"><div class="mt-lbl">OT labor-hrs</div><div class="mt-val">${totalOTLaborHrs.toFixed(1)} <span style="font-size:11px;color:var(--ot)">(${totalOTHC} people)</span></div></div>`
+    :`<div class="metric-tile"><div class="mt-lbl">OT labor-hrs</div><div class="mt-val" style="color:var(--ink3)">—</div></div>`;
+  document.getElementById('summaryStrip').innerHTML=`
+    <div class="metric-tile"><div class="mt-lbl">Daily volume</div><div class="mt-val">${tv.toLocaleString()}</div></div>
+    <div class="metric-tile"><div class="mt-lbl">AM staffed</div><div class="mt-val">${totalAm}</div></div>
+    <div class="metric-tile"><div class="mt-lbl">PM staffed</div><div class="mt-val">${totalPm}</div></div>
+    <div class="metric-tile flex-t"><div class="mt-lbl">Flex deployed</div><div class="mt-val">${totalFx}/${pool}</div></div>
+    ${otTile}
+    <div class="metric-tile ${compCls}"><div class="mt-lbl">Est. completion</div><div class="mt-val">${pctComp}%</div></div>
+    <div class="metric-tile ${overallCls}"><div class="mt-lbl">Clear targets</div><div class="mt-val" style="font-size:13px;margin-top:5px"><span class="status-badge ${overallCls}"><span class="dot ${overallCls}"></span>${statusTxt}</span></div></div>`;
+  document.getElementById('printStatus').innerHTML=`<span class="status-badge ${overallCls}"><span class="dot ${overallCls}"></span>${statusTxt}</span>`;
+}
+
+function renderRecs(DR,tv,eff){
+  const pool=gv('a_flexPool')||12,totalFxA=DEPTS.reduce((s,d)=>s+DR[d.id].fxHC,0),fxRem=pool-totalFxA;
+  const recs=[],otList=[];
+  DEPTS.forEach(d=>{
+    const dr=DR[d.id];
+    const otNote=dr.otHC>0&&dr.otHrs>0?` + ${dr.otHC} OT (${dr.otHrs}h)`:'';
+    if(dr.clearOffset>0){
+      if(!dr.clearFailed){
+        recs.push({t:'ok',m:`<strong>${d.lbl}</strong>: ✓ Clears by ${d2t(dr.clearTargetHour)} with current staffing${dr.fxHC>0?' + '+dr.fxHC+' flex':''}${otNote}.`});
+      } else {
+        const rem=dr.remainingAtTarget;
+        const fxN=dr.fxRate>0?Math.min(Math.ceil(rem/(dr.fxRate*getFlexNH())),fxRem):0;
+        recs.push({t:'bad',m:`<strong>${d.lbl}</strong>: ⚠ Misses clear target of ${d2t(dr.clearTargetHour)} — ${rem.toLocaleString()} ITNs still in queue.${fxN>0?' Deploy '+fxN+' flex to resolve.':' Add OT or adjust staffing.'}`});
+        otList.push({lbl:d.lbl,itn:rem,rate:dr.rate,fxRate:dr.fxRate});
+      }
+    } else {
+      const lastRem=dr.hourData[dr.hourData.length-1]?.remaining||0;
+      if(lastRem===0) recs.push({t:'ok',m:`<strong>${d.lbl}</strong>: ✓ Fully cleared by end of shift${otNote?otNote+' applied':''}.`});
+      else{recs.push({t:'warn',m:`<strong>${d.lbl}</strong>: ${lastRem.toLocaleString()} ITNs remain at shift end.`});otList.push({lbl:d.lbl,itn:lastRem,rate:dr.rate,fxRate:dr.fxRate});}
+    }
+  });
+  // OT summary
+  const totalOTLaborHrs=DEPTS.reduce((s,d)=>s+(DR[d.id].otHC*DR[d.id].otHrs),0);
+  const totalOTHC=DEPTS.reduce((s,d)=>s+DR[d.id].otHC,0);
+  const otDepts=DEPTS.filter(d=>DR[d.id].otHC>0&&DR[d.id].otHrs>0);
+  if(otDepts.length>0){
+    const otBreakdown=otDepts.map(d=>`${d.lbl}: ${DR[d.id].otHC} × ${DR[d.id].otHrs}h`).join(' · ');
+    recs.push({t:'warn',m:`<strong>OT authorized:</strong> ${totalOTHC} people · ${totalOTLaborHrs.toFixed(1)} labor-hours across ${otDepts.length} dept${otDepts.length>1?'s':''}. Breakdown: ${otBreakdown}. This OT is included in the simulation above.`});
+  }
+  const netHrs=(gv('a_shift')||8.5)-(gv('a_break')||0.75);
+  if(otList.length>0){
+    const totalITN=otList.reduce((s,d)=>s+d.itn,0),avgRate=otList.reduce((s,d)=>s+d.rate,0)/otList.length;
+    const otHrsNeeded=avgRate>0?Math.round(totalITN/avgRate):0,otPpl=Math.ceil(otHrsNeeded/2);
+    const fxFirst=fxRem>0?` ${fxRem} flex associate${fxRem>1?'s':''} still undeployed — exhaust flex before authorizing OT.`:'';
+    recs.push({t:'warn',m:`<strong>OT assessment:</strong> ${otList.length} dept${otList.length>1?'s':''} still need attention after OT: ${otList.map(x=>x.lbl).join(', ')}. ~${otHrsNeeded} additional labor-hours needed for ${totalITN.toLocaleString()} ITNs. Consider ${otPpl} × 2hr OT.${fxFirst}`});
+  } else {
+    recs.push({t:'ok',m:`<strong>OT assessment:</strong> ${otDepts.length>0?'With OT applied, all':'No overtime required. All'} departments clear their targets.`});
+  }
+  if(fxRem>0&&otList.length>0) recs.push({t:'flex',m:`<strong>Undeployed flex:</strong> ${fxRem} associate${fxRem>1?'s':''} still available. Assign them and re-run before authorizing OT.`});
+  const el=document.getElementById('recsContent');
+  const tm={ok:'ok',warn:'warn',flex:'flex-rec',bad:'bad'};
+  const im={ok:'ti-circle-check',warn:'ti-alert-triangle',flex:'ti-users',bad:'ti-alarm'};
+  el.innerHTML=recs.map(r=>`<div class="rec-row ${tm[r.t]||'warn'}"><i class="ti ${im[r.t]||'ti-info-circle'} rec-icon"></i><div>${r.m}</div></div>`).join('');
+}
+
+function renderHCTable(DR){
+  let h=`<table class="rt"><thead><tr><th class="lh" rowspan="2">Dept / shift</th>`;
+  HOURS.forEach((hr,i)=>{h+=`<th colspan="4"${i>0?' class="hb"':''}>${HLBL[i]}</th>`;});
+  h+=`</tr><tr>`;
+  HOURS.forEach((hr,i)=>{const b=i>0?' class="hb"':'';h+=`<th${b}>Stf</th><th>Pull</th><th>Dem</th><th>Gap</th>`;});
+  h+=`</tr></thead><tbody>`;
+  DEPTS.forEach((d,di)=>{
+    const dr=DR[d.id];const isSub=!d.top;
+    ['am','pm','fx','ot'].forEach((sh,si)=>{
+      const hv=sh==='fx'?dr.fxHC:sh==='ot'?dr.otHC:sh==='am'?dr.amHC:dr.pmHC;
+      if((sh==='fx'||sh==='ot')&&hv===0)return;
+      const rc=sh==='fx'?'fx-r':sh==='ot'?'ot-r':(isSub?(sh==='pm'?'sub-r pm-r':'sub-r'):(sh==='pm'?'pm-r':''));
+      const dc=si===0&&di>0?' divr':'';
+      let lbl;
+      if(si===0)lbl=isSub?`<td class="sc">↳ ${d.lbl} (AM)</td>`:`<td class="lc">${d.lbl} <span style="font-size:9px;color:var(--blue)">AM</span></td>`;
+      else if(si===1)lbl=isSub?`<td class="sc" style="padding-left:22px;color:var(--ink3)">PM</td>`:`<td class="lc" style="font-weight:400;font-style:italic;font-size:10px;color:var(--ink2)">PM</td>`;
+      else if(sh==='fx')lbl=`<td class="${isSub?'sc':'lc'}" style="${isSub?'padding-left:22px;':''}color:var(--flex);font-style:italic;font-size:10px">Flex</td>`;
+      else lbl=`<td class="${isSub?'sc':'lc'}" style="${isSub?'padding-left:22px;':''}color:var(--ot);font-style:italic;font-size:10px">OT (${dr.otHrs}h)</td>`;
+      h+=`<tr class="${rc}${dc}">${lbl}`;
+      dr.hourData.forEach((hd,i)=>{
+        const b=i>0?' hb':'';
+        const act=sh==='fx'?hd.fxA:sh==='ot'?hd.otA:(sh==='am'?hd.amA:hd.pmA);
+        if(!act){h+=`<td class="off${b}" colspan="4">—</td>`;return;}
+        const g=hv-hd.pullReqHC,gf=g===0?'✓':g>0?'+'+g:''+g;
+        const gc=sh==='fx'?'g-fx':sh==='ot'?'g-fx':g<0?'g-s':g>0?'g-o':'g-e';
+        const oc=hd.ol&&sh!=='fx'&&sh!=='ot'?' ol-c':(sh==='fx'||sh==='ot')?' fx-c':'';
+        const tm=hd.isTarget&&dr.clearOffset>0?` <span style="color:var(--amber);font-size:9px">▲</span>`:'';
+        h+=`<td class="${b}${oc}" style="${sh==='ot'?'color:var(--ot)':''}">${hv}${tm}</td><td class="pull-c">${hd.pullReqHC}</td><td class="dem-c">${hd.pushReqHC||0}</td><td class="${gc}${b}">${gf}</td>`;
+      });
+      h+=`</tr>`;
+    });
+  });
+  h+=`</tbody></table>`;
+  document.getElementById('hcTable').innerHTML=h;
+}
+
+function renderRemTable(DR,tv){
+  let h=`<table class="rt"><thead><tr><th class="lh">Department</th><th>Daily vol</th><th>Pull ref HC</th><th>Clear by</th>`;
+  HOURS.forEach((hr,i)=>{
+    const isAnyTgt=DEPTS.some(d=>DR[d.id].clearOffset>0&&DR[d.id].clearTargetHour===hr);
+    h+=`<th${i>0?(isAnyTgt?' class="hb tc"':' class="hb"'):(isAnyTgt?' class="tc"':'')}>${HLBL[i]}${isAnyTgt?' ▲':''}</th>`;
+  });
+  h+=`</tr></thead><tbody>`;
+  DEPTS.forEach((d,di)=>{
+    const dr=DR[d.id];const isSub=!d.top;
+    const cd=dr.clearOffset>0?d2t(dr.clearTargetHour):'Full shift';
+    const cc=dr.clearOffset>0?(dr.clearFailed?'var(--red)':'var(--amber)'):'var(--ink3)';
+    h+=`<tr class="${isSub?'sub-r':''}${di>0?' divr':''}">
+      <td class="${isSub?'sc':'lc'}"${isSub?' style="padding-left:16px"':''}>${isSub?'↳ ':''}${d.lbl}</td>
+      <td>${Math.round(dr.totalVol).toLocaleString()}</td>
+      <td style="color:var(--purple);font-weight:600">${dr.pullReqHC}${dr.fxHC>0?`<span style="color:var(--flex);font-size:9px"> +${dr.fxHC}fx</span>`:''}</td>
+      <td style="color:${cc};font-weight:600;font-family:'IBM Plex Mono',monospace;font-size:11px">${cd}${dr.clearFailed&&dr.clearOffset>0?' ⚠':''}</td>`;
+    dr.hourData.forEach((hd,i)=>{
+      const b=i>0?' hb':'';
+      const isTgtCol=dr.clearOffset>0&&HOURS[i]===dr.clearTargetHour,tc=isTgtCol?' tc':'';
+      if(!hd.active&&!hd.fxA){h+=`<td class="off${b}${tc}">—</td>`;return;}
+      const rem=hd.remaining,pastTgt=dr.clearOffset>0&&HOURS[i]>=dr.clearTargetHour;
+      let rc=rem===0?'rem-z':pastTgt?'rem-late':rem/Math.max(dr.totalVol,1)>0.3?'rem-warn':'rem-ok';
+      h+=`<td class="${rc}${b}${tc}">${rem===0?'0':rem.toLocaleString()}</td>`;
+    });
+    h+=`</tr>`;
+  });
+  const tots=HOURS.map((hr,hi)=>DEPTS.reduce((s,d)=>{const hd=DR[d.id].hourData[hi];return s+((hd.active||hd.fxA)?hd.remaining:0);},0));
+  h+=`<tr class="total-r"><td class="lc">All depts</td><td>${Math.round(tv).toLocaleString()}</td><td>—</td><td>—</td>`;
+  tots.forEach((t,i)=>{
+    const b=i>0?' hb':'',any=DEPTS.some(d=>{const hd=DR[d.id].hourData[i];return hd.active||hd.fxA;});
+    if(!any){h+=`<td class="off${b}">—</td>`;return;}
+    h+=`<td class="${t===0?'rem-z':t/tv>0.3?'rem-warn':'rem-ok'}${b}" style="font-weight:600">${t===0?'0':t.toLocaleString()}</td>`;
+  });
+  h+=`</tr></tbody></table>`;
+  document.getElementById('remTable').innerHTML=h;
+}
+
+function renderCharts(DR,tv,eff){
+  if(typeof Chart==='undefined')return;
+  try{
+  const rates={},amHC={},pmHC={},fxHC={};
+  DEPTS.forEach(d=>{rates[d.id]=gv('art_'+d.id)||d.rate;amHC[d.id]=HC[d.id].am;pmHC[d.id]=HC[d.id].pm;fxHC[d.id]=HC[d.id].fx;});
+  const fxEff=(gv('a_flexEff')||80)/100;
+  const cumV=[],cumT=[];let cv=0,ct=0;
+  HOURS.forEach((h,hi)=>{
+    cv+=DEPTS.reduce((s,d)=>s+DR[d.id].hourData[hi].arriving,0);
+    const ht=DEPTS.reduce((s,d)=>{const hd=DR[d.id].hourData[hi],r=rates[d.id];return s+(hd.amA?amHC[d.id]*r*eff:0)+(hd.pmA?pmHC[d.id]*r*eff:0)+(hd.fxA?fxHC[d.id]*r*fxEff:0);},0);
+    ct+=ht;cumV.push(Math.round(cv));cumT.push(Math.round(ct));
+  });
+  const totBL=HOURS.map((h,hi)=>DEPTS.reduce((s,d)=>{const hd=DR[d.id].hourData[hi];return s+((hd.active||hd.fxA)?hd.remaining:0);},0));
+  if(bdCI)bdCI.destroy();
+  bdCI=new Chart(document.getElementById('bdCanvas'),{type:'line',
+    data:{labels:HLBL,datasets:[
+      {label:'Arrived',data:cumV,borderColor:'#0f4c81',backgroundColor:'rgba(15,76,129,0.07)',borderWidth:2,fill:true,tension:0.3,pointRadius:3,pointBackgroundColor:'#0f4c81'},
+      {label:'Processed',data:cumT,borderColor:'#1a6b3c',backgroundColor:'rgba(26,107,60,0.07)',borderWidth:2,fill:true,tension:0.3,pointRadius:3,pointBackgroundColor:'#1a6b3c'}
+    ]},
+    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},
+      scales:{x:{ticks:{autoSkip:false,maxRotation:45,font:{size:10}},grid:{color:'rgba(0,0,0,0.05)'}},
+              y:{ticks:{font:{size:10},callback:v=>v>=1000?(v/1000).toFixed(1)+'k':v},grid:{color:'rgba(0,0,0,0.05)'}}}}
+  });
+  if(remCI)remCI.destroy();
+  remCI=new Chart(document.getElementById('remCanvas'),{type:'bar',
+    data:{labels:HLBL,datasets:[{label:'ITNs remaining',data:totBL,
+      backgroundColor:totBL.map(v=>v===0?'rgba(26,107,60,0.5)':v/tv>0.3?'rgba(139,26,26,0.5)':'rgba(122,77,0,0.45)'),
+      borderWidth:0,borderRadius:3}]},
+    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},
+      scales:{x:{ticks:{autoSkip:false,maxRotation:45,font:{size:10}},grid:{color:'rgba(0,0,0,0.05)'}},
+              y:{ticks:{font:{size:10},callback:v=>v>=1000?(v/1000).toFixed(1)+'k':v},min:0,grid:{color:'rgba(0,0,0,0.05)'}}}}
+  });
+  }catch(e){console.error('Chart.js render error:',e);}
+}
+
+function showRTab(n){
+  ['recs','hc','rem','act','bd'].forEach((t,i)=>{
+    document.querySelectorAll('.tab-bar button')[i].classList.toggle('active',t===n);
+    document.getElementById('rpane-'+t).classList.toggle('active',t===n);
+  });
+  if(n==='act'&&lastDR)renderActuals();
+}
+
+// ── ACTUALS ENGINE ──────────────────────────────────────────────────────────
+
+// actuals[deptId][hourIndex] = ITNs actually processed that hour (or null)
+const actuals = {};
+DEPTS.forEach(d => { actuals[d.id] = new Array(HOURS.length).fill(null); });
+
+function getCurrentHourIndex(){
+  const now = new Date();
+  const h = now.getHours();
+  // find last hour that has passed (we can enter actuals for completed hours)
+  const idx = HOURS.lastIndexOf(h);
+  // allow entry up to and including the current hour (in-progress)
+  return HOURS.findIndex(hr => hr >= h);
+}
+
+function getActual(deptId, hi){ return actuals[deptId][hi]; }
+function setActual(deptId, hi, val){
+  actuals[deptId][hi] = (val === '' || val === null || isNaN(val)) ? null : Math.max(0, parseInt(val));
+}
+
+function renderActuals(){
+  if(!lastDR){ document.getElementById('actContent').innerHTML='<div style="padding:1rem;color:var(--ink3)">Run the plan first to enable actuals entry.</div>'; return; }
+  const curHi = getCurrentHourIndex(); // first future hour index — actuals allowed for 0..curHi-1, current hour editable too
+  const allowUpTo = Math.min(curHi, HOURS.length - 1); // inclusive last editable index
+
+  // Build reforecast data
+  const rfData = buildReforecast();
+
+  // Summary stats
+  let totalActual = 0, totalPlan = 0, hoursWithData = 0;
+  DEPTS.forEach(d => {
+    actuals[d.id].forEach((v, hi) => {
+      if(v !== null){
+        totalActual += v;
+        totalPlan += Math.round(lastDR[d.id].hourData[hi].processed);
+        hoursWithData++;
+      }
+    });
+  });
+  const overallPct = totalPlan > 0 ? Math.round(totalActual / totalPlan * 100) : null;
+  const overallCls = overallPct === null ? '' : overallPct >= 95 ? 'as-good' : overallPct >= 80 ? 'as-warn' : 'as-bad';
+  const totalActualRemaining = rfData ? DEPTS.reduce((s,d)=>s+(rfData[d.id].remaining??0),0) : null;
+
+  let html = '';
+
+  // ── Top summary bar ──
+  html += `<div class="act-summary-row">
+    <div class="act-stat as-act"><div class="as-lbl">Actual processed</div><div class="as-val">${totalActual.toLocaleString()}</div></div>
+    <div class="act-stat"><div class="as-lbl">Plan processed</div><div class="as-val">${totalPlan.toLocaleString()}</div></div>
+    ${overallPct!==null?`<div class="act-stat ${overallCls}"><div class="as-lbl">Pace vs plan</div><div class="as-val">${overallPct}%</div></div>`:''}
+    ${totalActualRemaining!==null?`<div class="act-stat ${totalActualRemaining===0?'as-good':totalActualRemaining/Math.max(gv('d_vol')||5300,1)>0.15?'as-bad':'as-warn'}"><div class="as-lbl">Re-fcst remaining</div><div class="as-val">${totalActualRemaining.toLocaleString()}</div></div>`:''}
+    <div style="margin-left:auto;display:flex;align-items:center">
+      <button onclick="clearAllActuals()" style="font-size:11px;color:var(--red);border:1px solid var(--red-border);background:var(--red-bg);border-radius:4px;padding:.25rem .7rem;cursor:pointer;font-family:'Inter',sans-serif">Clear all actuals</button>
+    </div>
+  </div>`;
+
+  // ── Reforecast panel ──
+  if(rfData && hoursWithData > 0){
+    html += `<div class="refc-panel">
+      <div class="refc-title"><i class="ti ti-refresh" style="font-size:14px"></i> Re-forecast from actuals — remaining ITNs by department</div>
+      <div class="refc-grid">`;
+    DEPTS.forEach(d => {
+      const rf = rfData[d.id];
+      const rem = rf.remaining ?? 0;
+      const planRem = lastDR[d.id].hourData[HOURS.length-1].remaining;
+      const diff = rem - planRem;
+      const diffStr = diff === 0 ? 'on plan' : (diff > 0 ? `+${diff.toLocaleString()} vs plan` : `${diff.toLocaleString()} vs plan`);
+      const diffCol = diff > 50 ? 'var(--red)' : diff < -50 ? 'var(--green)' : 'var(--amber)';
+      const clearOk = rf.clearFailed === false;
+      html += `<div class="refc-item">
+        <div class="refc-dept">${d.lbl}</div>
+        <div class="refc-vals">
+          <span style="color:var(--act);font-weight:600">${rem.toLocaleString()}</span> rem<br>
+          <span style="font-size:10px;color:${diffCol}">${diffStr}</span><br>
+          <span style="font-size:10px;color:${clearOk?'var(--green)':'var(--red)'}">${clearOk?'✓ Clears target':'⚠ Misses target'}</span>
+        </div>
+      </div>`;
+    });
+    html += `</div></div>`;
+  }
+
+  // ── Accuracy table ──
+  if(hoursWithData > 0){
+    html += `<div class="tbl-wrap" style="margin-bottom:.75rem"><table class="acc-tbl"><thead><tr>
+      <th>Department</th>
+      <th class="r">Plan total</th>
+      <th class="r">Actual total</th>
+      <th class="r">Variance</th>
+      <th class="r">Pace %</th>
+      <th>Accuracy</th>
+    </tr></thead><tbody>`;
+    DEPTS.forEach(d => {
+      const isSub = !d.top;
+      let dp = 0, da = 0, hrs = 0;
+      actuals[d.id].forEach((v,hi) => { if(v!==null){ dp += Math.round(lastDR[d.id].hourData[hi].processed); da += v; hrs++; } });
+      if(hrs === 0){ html += `<tr><td class="${isSub?'sc':'lc'}">${isSub?'↳ ':''}${d.lbl}</td><td colspan="5" style="color:#ccc;text-align:center;font-family:'Inter',sans-serif;font-size:10px">No actuals entered</td></tr>`; return; }
+      const pct = dp > 0 ? Math.round(da/dp*100) : 100;
+      const varN = da - dp;
+      const varStr = varN === 0 ? '—' : (varN > 0 ? '+' : '') + varN.toLocaleString();
+      const pctCls = pct >= 95 ? 'var(--green)' : pct >= 80 ? 'var(--amber)' : 'var(--red)';
+      const barW = Math.min(pct, 130);
+      const barCol = pct >= 95 ? '#1a6b3c' : pct >= 80 ? '#c8860a' : '#8b1a1a';
+      html += `<tr>
+        <td class="${isSub?'sc':'lc'}">${isSub?'↳ ':''}${d.lbl}</td>
+        <td>${dp.toLocaleString()}</td>
+        <td style="color:var(--act);font-weight:600">${da.toLocaleString()}</td>
+        <td style="color:${varN>0?'var(--green)':varN<0?'var(--red)':'var(--ink3)'}">${varStr}</td>
+        <td style="color:${pctCls};font-weight:600">${pct}%</td>
+        <td><span class="acc-bar" style="width:${barW}px;background:${barCol};opacity:.7"></span></td>
+      </tr>`;
+    });
+    html += `</tbody></table></div>`;
+  }
+
+  // ── Per-dept hour entry grids ──
+  html += `<div class="act-hint"><strong>Enter actual ITNs processed</strong> per department per hour. Past &amp; current hours are editable; future hours are locked. <span style="color:var(--act)">Blue</span> = actual entered. Each cell shows plan below and variance above.</div>`;
+
+  DEPTS.forEach(d => {
+    const dr = lastDR[d.id];
+    const isSub = !d.top;
+    // only show hours where dept is active
+    const activeHIs = HOURS.map((h,i)=>i).filter(i => dr.hourData[i].active || dr.hourData[i].fxA || dr.hourData[i].otA);
+    if(activeHIs.length === 0) return;
+
+    let dTotal = 0, pTotal = 0;
+    actuals[d.id].forEach((v,hi)=>{ if(v!==null && (dr.hourData[hi].active||dr.hourData[hi].fxA)){ dTotal+=v; pTotal+=Math.round(dr.hourData[hi].processed); } });
+
+    html += `<div class="act-dept-block">
+      <div class="act-dept-hdr">
+        <div class="act-dept-name">${isSub?'↳ ':''}${d.lbl}</div>
+        <div class="act-dept-meta">${dTotal>0?`Actual: ${dTotal.toLocaleString()} · Plan: ${pTotal.toLocaleString()} · ${pTotal>0?Math.round(dTotal/pTotal*100)+'%':'—'}`:'No actuals yet'}</div>
+      </div>
+      <div class="act-grid">`;
+
+    activeHIs.forEach(hi => {
+      const hInt = HOURS[hi];
+      const hd = dr.hourData[hi];
+      const planProc = Math.round(hd.processed);
+      const act = actuals[d.id][hi];
+      const isPast = hi <= allowUpTo;
+      const hasVal = act !== null;
+      const varN = hasVal ? act - planProc : null;
+      const varStr = varN === null ? '' : varN === 0 ? '=' : (varN > 0 ? '+' : '') + varN.toLocaleString();
+      const varCls = varN === null ? 'av-none' : varN >= 0 ? 'av-good' : varN < -planProc * 0.2 ? 'av-bad' : 'av-warn';
+
+      html += `<div class="act-cell">
+        <div class="act-cell-lbl">${HLBL[hi]}</div>
+        <input type="number" min="0" max="99999"
+          id="act_${d.id}_${hi}"
+          value="${hasVal ? act : ''}"
+          placeholder="${planProc||''}"
+          ${!isPast ? 'disabled' : ''}
+          class="${hasVal ? 'has-val' : ''}"
+          oninput="onActualInput('${d.id}',${hi},this.value)"
+          onblur="onActualCommit('${d.id}',${hi},this.value)"
+          onkeydown="if(event.key==='Enter'){this.blur();}"
+          style="width:100%">
+        <div class="act-plan" id="act_plan_${d.id}_${hi}">${planProc > 0 ? 'plan:'+planProc.toLocaleString() : ''}</div>
+        <div class="act-var ${varCls}" id="act_var_${d.id}_${hi}">${varStr}</div>
+      </div>`;
+    });
+
+    html += `</div></div>`;
+  });
+
+  document.getElementById('actContent').innerHTML = html;
+}
+
+function onActualInput(deptId, hi, val){
+  // Store the value immediately so it isn't lost
+  setActual(deptId, hi, val);
+
+  // Update only this cell's styling and variance label — no full re-render
+  const el = document.getElementById(`act_${deptId}_${hi}`);
+  if(el) el.className = (actuals[deptId][hi] !== null) ? 'has-val' : '';
+
+  const planProc = lastDR ? Math.round(lastDR[deptId].hourData[hi].processed) : 0;
+  const act = actuals[deptId][hi];
+  const varEl = document.getElementById(`act_var_${deptId}_${hi}`);
+  if(varEl){
+    const varN = act !== null ? act - planProc : null;
+    const varStr = varN === null ? '' : varN === 0 ? '=' : (varN > 0 ? '+' : '') + varN.toLocaleString();
+    const varCls = varN === null ? 'av-none' : varN >= 0 ? 'av-good' : varN < -planProc * 0.2 ? 'av-bad' : 'av-warn';
+    varEl.textContent = varStr;
+    varEl.className = `act-var ${varCls}`;
+  }
+}
+
+function onActualCommit(deptId, hi, val){
+  // Finalise the value and do a full re-render of summaries + reforecast
+  setActual(deptId, hi, val);
+  renderActuals();
+}
+
+function clearAllActuals(){
+  DEPTS.forEach(d => { actuals[d.id].fill(null); });
+  renderActuals();
+}
+
+function buildReforecast(){
+  if(!lastDR) return null;
+  const eff = (gv('a_eff')||100)/100;
+  const fxEff = (gv('a_flexEff')||80)/100;
+  const rfData = {};
+
+  DEPTS.forEach(d => {
+    const dr = lastDR[d.id];
+    // Find the last hour with an actual entered
+    let lastActHi = -1;
+    actuals[d.id].forEach((v,hi) => { if(v !== null) lastActHi = hi; });
+
+    if(lastActHi < 0){
+      // No actuals — copy from plan
+      rfData[d.id] = { remaining: dr.hourData[HOURS.length-1].remaining, clearFailed: dr.clearFailed };
+      return;
+    }
+
+    // Compute actual backlog at the last entered hour:
+    // backlog = cumulative arrivals - cumulative actuals processed
+    let cumArrival = 0, cumActual = 0;
+    for(let hi = 0; hi <= lastActHi; hi++){
+      cumArrival += dr.hourData[hi].arriving;
+      const act = actuals[d.id][hi];
+      cumActual += (act !== null) ? act : Math.round(dr.hourData[hi].processed);
+    }
+    let backlog = Math.max(0, cumArrival - cumActual);
+
+    // Continue simulation from lastActHi+1 using plan capacity
+    const clearTargetHour = dr.clearTargetHour;
+    const clearOffset = dr.clearOffset;
+    let clearFailed = false;
+
+    for(let hi = lastActHi + 1; hi < HOURS.length; hi++){
+      const hd = dr.hourData[hi];
+      const hInt = HOURS[hi];
+      backlog += hd.arriving;
+      const cap = hd.dStf * dr.rate * eff + hd.fStf * dr.fxRate + (hd.oStf||0) * dr.rate * eff;
+      backlog = Math.max(0, backlog - cap);
+      if(clearOffset > 0 && hInt >= clearTargetHour && backlog > 0) clearFailed = true;
+    }
+
+    rfData[d.id] = { remaining: Math.round(backlog), clearFailed: clearOffset > 0 ? clearFailed : backlog > 0 };
+  });
+
+  return rfData;
+}
+
+// ── END ACTUALS ENGINE ───────────────────────────────────────────────────────
+
+document.getElementById('d_date').value=new Date().toISOString().split('T')[0];
+buildDeptCards();updateAdminNotes();updateFlexCounters();
+</script>
+
+
+</body></html>
